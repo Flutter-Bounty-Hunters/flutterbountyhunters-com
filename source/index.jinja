@@ -21,6 +21,21 @@ base_url: https://flutterbountyhunters.com
     <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Open Graph Social Media -->
+    <meta property="og:url" content="{{ homepage_url }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:image" content="{{ homepage_url }}/images/social.png" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@FlutterBounties" />
+    <meta name="twitter:url" content="{{ homepage_url }}" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta name="twitter:description" content="{{ description }}" />
+    <meta name="twitter:image" content="{{ homepage_url }}/images/social.png" />
+
     <!-- Tailwind CSS -->
     <link href="/styles/tailwind.css" rel="stylesheet">
 
@@ -33,9 +48,552 @@ base_url: https://flutterbountyhunters.com
     <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
   </head>
 
-  <body class="bg-[#161718]">
-    <main>
+  <body class="relative w-screen text-white font-[-apple-system, BlinkMacSystemFont, sans-serif] bg-[#161718]">
+    <!-- Email form -->
+    <div id="hireMeModal" class="hidden fixed w-screen h-screen bg-[#00000088] z-50 flex justify-center items-center">
+      <div id="hireMePopup" class="w-[300px] p-[24px] bg-[#FFFFFF] rounded-lg drop-shadow-2xl">
+        <h2 class="mb-4 text-[#333333] text-uppercase font-bold">How would you like to work together?</h2>
+        <form id="hireMeForm" action="">
+          <select
+              name="typeOfFunding"
+              id="typeOfFunding"
+              class="placeholder:italic placeholder:text-slate-400 block bg-[#333333] w-full border-2 border-slate-300 rounded-md mb-2 py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+          >
+            <option value="partial-funder">Partial Funder</option>
+            <option value="primary-funder">Primary Funder</option>
+          </select>
 
+          <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name..."
+              class="placeholder:italic placeholder:text-slate-400 block bg-[#333333] w-full border-2 border-slate-300 rounded-md mb-2 py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+          />
+
+          <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Your email..."
+              class="placeholder:italic placeholder:text-slate-400 block bg-[#333333] w-full border-2 border-slate-300 rounded-md mb-2 py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+          />
+
+          <textarea
+              rows="5"
+              id="message"
+              placeholder="How can we help you?"
+              class="w-full placeholder:italic placeholder:text-slate-400 block bg-[#333333] w-full border-2 border-slate-300 rounded-md mb-2 py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+          ></textarea>
+
+          <button type="submit" class="w-full px-[16px] py-[8px] bg-[#4696E7] hover:bg-[#71B7FE] text-white rounded-lg">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Start of content -->
+    <div class="absolute hidden md:flex w-full h-[48px] flex flex-row justify-center items-center gap-[48px]">
+      <a href="#OurFunders" class="text-[14px] text-[#ADADAD] font-medium uppercase">Our Funders</a>
+      <a href="#HappyClients" class="text-[14px] text-[#ADADAD] font-medium uppercase">Happy Clients</a>
+      <a href="#OurPackages" class="text-[14px] text-[#ADADAD] font-medium uppercase">Packages</a>
+      <a href="#OurTeam" class="text-[14px] text-[#ADADAD] font-medium uppercase">Our Team</a>
+      <a href="#HowWeWork" class="text-[14px] text-[#ADADAD] font-medium uppercase">How We Work</a>
+      <a href="#WorkWithUs" class="text-[14px] text-[#ADADAD] font-medium uppercase">Work With Us</a>
+    </div>
+
+    <header class="pt-[72px] md:pt-[125px] px-[24px] text-center border-b-2 border-[#262626]">
+      <img src="/images/branding/fbh_logo_medium.png" class="ml-auto mr-auto w-[36px]">
+      <div class="text-[#666666] text-[16px] font-bold uppercase">Flutter Bounty Hunters</div>
+
+      <div class="mx-auto mt-[8px] max-w-[200px] h-[1px] bg-[#292929]"></div>
+
+      <div class="my-[18px] font-['Bowlby_One'] uppercase">
+        <div class="text-[46px] md:text-[72px] leading-[1.1em] align-middle"><img src="/images/google/flutter_logo_medium.png" class="w-[32px] md:w-[64px] inline mr-[8px]"><span class="underline decoration-[#45D1FD]">Flutter</span><br class="md:hidden"> <span class="text-[#ADADAD]">&amp;</span> <img src="/images/google/dart_logo_medium.png" class="w-[32px] md:w-[64px] inline mr-[8px]"><span class="underline decoration-[#45D1FD]">Dart</span></div>
+        <div class="mt-[16px] md:mt-0 text-[26px] md:text-[48px] text-[#ADADAD] leading-[1.1em]">Open Source Development</div>
+      </div>
+
+      <div class="text-[#777777] text-[14px] md:text-[22px] font-light italic tracking-[0.15em]">Solving Flutter &amp; Dart problems for the <b class="text-[#ADADAD] font-bold">LAST</b> time!</div>
+
+      <div class="my-[96px]">
+        <a href="#WorkWithUs" class="text-[20px] text-[#66C5FF] font-black uppercase">Work with us</a>
+      </div>
+
+      <div>
+        <div class="text-[#444444] text-[12px] font-bold tracking-widest uppercase">Powering great Flutter apps</div>
+        <div class="mt-[20px] mb-[40px] w-full flex flex-row justify-center items-center gap-[48px]">
+          <a href="https://superlist.com" target="_blank">
+            <img src="/images/clients/superlist_logo_small.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://clickup.com" target="_blank">
+            <img src="/images/clients/clickup_logo_small.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://clearful.com" target="_blank">
+            <img src="/images/clients/clearful_logo_small.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://reflection.app" target="_blank">
+            <img src="/images/clients/reflection-app_logo_small.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://invoiceninja.com" target="_blank">
+            <img src="/images/clients/invoice-ninja_logo_small.png" class="opacity-50 hover:opacity-100">
+          </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="OurFunders" class="py-[125px] px-[24px] text-center border-b-2 border-[#262626]">
+        <h2 class="text-white text-[32px] md:text-[42px] font-['Bowlby_One'] uppercase leading-[1.1em]">Thanks To Our Funders</h2>
+        <div class="text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">All of this is made possible by our funders</div>
+
+        <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+        <h2 class="text-white text-[26px] font-['Bowlby_One'] uppercase">Primary Funders</h2>
+        <div class="mt-[20px] mb-[64px] w-full flex flex-row justify-center items-center gap-[64px]">
+          <a href="https://superlist.com" target="_blank" class="flex flex-col items-center">
+            <img src="/images/clients/superlist_logo_large.png">
+            <div class="text-[#5E5E5E] text-[12px] font-bold tracking-[4px] uppercase">For Super<br>Editor</div>
+          </a>
+        </div>
+
+        <h2 class="text-white text-[26px] font-['Bowlby_One'] uppercase">Partial Funders</h2>
+        <div class="mt-[20px] mb-[64px] w-full flex flex-row justify-center items-center gap-[24px] md:gap-[64px]">
+          <a href="https://superlist.com" target="_blank">
+            <img src="/images/clients/superlist_logo_medium.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://clickup.com" target="_blank">
+            <img src="/images/clients/clickup_logo_medium.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://clearful.com" target="_blank">
+            <img src="/images/clients/clearful_logo_medium.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://bringingfire.com" target="_blank">
+            <img src="/images/clients/bringing-fire_logo_medium.png" class="opacity-50 hover:opacity-100">
+          </a>
+
+          <a href="https://reflection.app" target="_blank">
+            <img src="/images/clients/reflection-app_logo_medium.png" class="opacity-50 hover:opacity-100">
+          </a>
+        </div>
+
+        <a href="#WorkWithUs" class="inline-block mx-auto px-[24px] py-[12px] text-[#FFFFFF] bg-[#4696E7] hover:bg-[#71B7FE] rounded-lg">Become a Funder</a>
+      </div>
+
+      <div id="HappyClients" class="py-[125px] px-[24px] text-center border-b-2 border-[#262626]">
+        <h2 class="text-white text-[32px] md:text-[42px] font-['Bowlby_One'] uppercase leading-[1.1em]">Happy Clients</h2>
+        <div class="text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">How we help our funding clients</div>
+
+        <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+        <div class="flex flex-col justify-center">
+          <div class="relative mx-auto">
+            <img src="/images/clients/clearful_testimonial_jeff.png" class="absolute right-[-32px] bottom-[-32px] w-[64px] rounded-full border-4 border-[#2B40FF]">
+            <img src="/images/clients/clearful_logo_medium.png" class="mx-auto">
+          </div>
+
+          <div class="mt-[48px] mb-[24px]">
+            <blockquote class="relative mx-[24px] md:mx-auto max-w-[400px] text-white text-[16px] md:text-[20px] text-left tracking-[2px]">
+              <img src="/images/decorations/quote_start.png" class="hidden md:block absolute w-[72px] left-[-92px] top-[-64px]">
+              <img src="/images/decorations/quote_end.png" class="hidden md:block absolute w-[72px] right-[-72px] bottom-[-100px]">
+              Matt has been an invaluable partner for Clearful. His technical knowledge, API design and implementation skills, and commitment to the open-source community have provided us with best-in-class solutions to our business problems. We strongly recommend Matt and Flutter Bounty Hunters and are excited to continue working together.
+            </blockquote>
+          </div>
+          <div class="mx-auto w-[200px] text-right">
+            <div class="text-[20px] font-['Bowlby_One'] uppercase">Jeffrey Bunn</div>
+            <div class="text-[16px] text-[#2B40FF] font-['Bowlby_One'] uppercase">Clearful</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="SuperchargingFlutter" class="py-[125px] text-center border-b-2 border-[#262626]">
+        <div class="px-[24px]">
+          <h2 class="text-white text-[32px] md:text-[42px] font-['Bowlby_One'] uppercase leading-[1.1em]">Supercharing Flutter</h2>
+          <div class="text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">Pushing the frontier &amp; providing missing pieces</div>
+
+          <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+        </div>
+
+        <!-- TODO: -->
+        <div class="hidden mb-[125px] w-full aspect-video bg-[#00000044]"><!-- Video Demo --></div>
+
+        <div id="OurPackages" class="text-center">
+          <h3 class="text-white text-[30px] font-['Bowlby_One'] uppercase">Our Packages</h3>
+          <div class="text-[#ADADAD] text-[18px] font-light tracking-[5px] uppercase">Check out the tools we've already built</div>
+
+          <div class="mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+          <div class="mb-[64px] px-[24px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+            <div class="flex flex-col gap-[16px]">
+              <h4 class="mb-[24px] text-[18px] text-[#ADADAD] tracking-[3px] text-center uppercase">Websites</h4>
+              <a href="https://staticshock.io" target="_blank"><img src="/images/packages/static_shock.png"></a>
+              <a href="https://pub.dev/packages/dart_rss" target="_blank"><img src="/images/packages/dart_rss.png"></a>
+            </div>
+
+            <div class="flex flex-col gap-[16px]">
+              <h4 class="mb-[24px] text-[18px] text-[#ADADAD] tracking-[3px] text-center uppercase">Text Editing</h4>
+              <a href="https://pub.dev/packages/super_editor" target="_blank"><img src="/images/packages/super_editor.png"></a>
+              <a href="https://pub.dev/packages/super_text_layout" target="_blank"><img src="/images/packages/super_text_layout.png"></a>
+              <a href="https://pub.dev/packages/attributed_text" target="_blank"><img src="/images/packages/attributed_text.png"></a>
+            </div>
+
+            <div class="flex flex-col gap-[16px]">
+              <h4 class="mb-[24px] text-[18px] text-[#ADADAD] tracking-[3px] text-center uppercase">Test Tools</h4>
+              <a href="https://flutter-bounty-hunters.github.io/flutter_test_robots/" target="_blank"><img src="/images/packages/flutter_test_robots.png"></a>
+              <a href="https://flutter-bounty-hunters.github.io/golden_bricks/" target="_blank"><img src="/images/packages/golden_bricks.png"></a>
+            </div>
+          </div>
+
+          <div class="mb-[64px] px-[24px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+            <div class="flex flex-col gap-[16px]">
+              <h4 class="mb-[24px] text-[18px] text-[#ADADAD] tracking-[3px] text-center uppercase">Video Production</h4>
+              <a href="https://flutter-bounty-hunters.github.io/ffmpeg_cli/" target="_blank"><img src="/images/packages/ffmpeg_cli.png"></a>
+              <a href="https://pub.dev/packages/cutting_room" target="_blank"><img src="/images/packages/cutting_room.png"></a>
+            </div>
+
+            <div class="flex flex-col gap-[16px]">
+              <h4 class="mb-[24px] text-[18px] text-[#ADADAD] tracking-[3px] text-center uppercase">Flutter's Missing Pieces</h4>
+              <a href="https://pub.dev/packages/follow_the_leader" target="_blank"><img src="/images/packages/follow_the_leader.png"></a>
+              <a href="https://pub.dev/packages/overlord" target="_blank"><img src="/images/packages/overlord.png"></a>
+            </div>
+
+            <div class="flex flex-col gap-[16px]">
+              <h4 class="mb-[24px] text-[18px] text-[#ADADAD] tracking-[3px] text-center uppercase">Misc</h4>
+              <a href="https://pub.dev/packages/bitmap_canvas" target="_blank"><img src="/images/packages/bitmap_canvas.png"></a>
+              <a href="https://pub.dev/packages/super_banners" target="_blank"><img src="/images/packages/super_banners.png"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="OurTeam" class="py-[125px] px-[24px] text-center border-b-2 border-[#262626]">
+        <h2 class="text-white text-[32px] md:text-[42px] font-['Bowlby_One'] uppercase">Our Team</h2>
+        <div class="text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">Elite Flutter &amp; Dart developers</div>
+
+        <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+        <div class="grid grid-cols-1 md:flex md:flex-row gap-[64px] justify-center">
+          <!-- Matt -->
+          <div class="w-full max-w-[200px] flex flex-col text-center place-self-center md:place-self-start">
+            <div class="mx-auto p-[16px] bg-[#111111] rounded-full">
+              <img src="/images/team/matt.png" class="mx-auto rounded-full">
+            </div>
+            <div class="mt-[8px] text-white text-[16px] font-['Bowlby_One'] font-bold uppercase">Chief</div>
+            <div class="text-[#A1A1A1] text-[12px] tracking-[2px] uppercase">Matt</div>
+
+            <div class="my-[12px] text-[#606060] text-[12px] tracking-[2px] uppercase">Former member of the Flutter team</div>
+
+            <a href="https://x.com/suprdeclarative" target="_blank" class="my-[8px] px-[16px] py-[8px] bg-[#272727] rounded-md text-white text-[12px] tracking-[1px]"><i class="fa-brands fa-twitter"></i> @SuprDeclarative</a>
+            <a href="https://github.com/matthew-carroll" target="_blank"  class="my-[8px] px-[16px] py-[8px] bg-white rounded-md text-black text-[12px] tracking-[1px]"><i class="fa-brands fa-github"></i> matthew-carroll</a>
+          </div>
+
+          <!-- Simon -->
+          <div class="w-full max-w-[200px] flex flex-col text-center place-self-center md:place-self-start">
+            <div class="mx-auto p-[16px] bg-[#111111] rounded-full">
+              <img src="/images/team/simon.png" class="mx-auto rounded-full">
+            </div>
+            <div class="mt-[8px] text-white text-[16px] font-['Bowlby_One'] font-bold uppercase">Specialist</div>
+            <div class="text-[#A1A1A1] text-[12px] tracking-[2px] uppercase">Simon</div>
+
+            <div class="my-[12px] text-[#606060] text-[12px] tracking-[2px] uppercase">Founder of the Flutter Community</div>
+
+            <a href="https://x.com/devangelslondon" target="_blank" class="my-[8px] px-[16px] py-[8px] bg-[#272727] rounded-md text-white text-[12px] tracking-[1px]"><i class="fa-brands fa-twitter"></i> @DevAngelsLondon</a>
+          </div>
+
+          <!-- Angelo -->
+          <div class="w-full max-w-[200px] flex flex-col text-center place-self-center md:place-self-start">
+            <div class="mx-auto p-[16px] bg-[#111111] rounded-full">
+              <img src="/images/team/angelo.png" class="mx-auto rounded-full">
+            </div>
+            <div class="mt-[8px] text-white text-[16px] font-['Bowlby_One'] font-bold uppercase">Hunter</div>
+            <div class="text-[#A1A1A1] text-[12px] tracking-[2px] uppercase">Angelo</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="HowWeWork" class="py-[125px] px-[24px] text-center border-b-2 border-[#262626]">
+        <h2 class="text-white text-[32px] md:text-[42px] font-['Bowlby_One'] uppercase">How We Work</h2>
+        <div class="text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">Solving your problems, and everyone else's</div>
+
+        <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+        <h3 class="mt-[48px] text-white text-[18px] md:text-[24px] font-['Bowlby_One'] uppercase">Step 1: The Agency Model</h3>
+        <div class="mb-[24px] text-[#ADADAD] text-[10px] md:text-[14px] font-light tracking-[5px] uppercase">We begin like any other agency, but in the open.</div>
+        <img src="/images/content/step-1_the-agency-model.png" class="mx-auto w-full mt-[48px] mb-[124px] max-w-[600px]">
+
+        <h3 class="mt-[48px] text-white text-[18px] md:text-[24px] font-['Bowlby_One'] uppercase">Step 2: Save on Bugs</h3>
+        <div class="mb-[24px] text-[#ADADAD] text-[10px] md:text-[14px] font-light tracking-[5px] uppercase">Bugs can't be avoided, but they can cost less.</div>
+        <img src="/images/content/step-2_save-on-bugs.png" class="mx-auto w-full mt-[48px] mb-[124px] max-w-[600px]">
+
+        <h3 class="mt-[48px] text-white text-[18px] md:text-[24px] font-['Bowlby_One'] uppercase">Step 3: Save on Features</h3>
+        <div class="mb-[24px] text-[#ADADAD] text-[10px] md:text-[14px] font-light tracking-[5px] uppercase">Software is never finished. Save on what's next.</div>
+        <img src="/images/content/step-3_save-on-features.png" class="mx-auto w-full mt-[48px] mb-[124px] max-w-[600px]">
+
+        <h3 class="mt-[48px] text-white text-[22px] md:text-[32px] font-['Bowlby_One'] uppercase">Net Benefits</h3>
+        <div class="mb-[24px] text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">Work with us and enjoy the benefits</div>
+        <ul class="mx-auto max-w-[500px] text-left">
+          <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1"><span class="text-[#84EC1B]">Elite developers</span> working on your problems</span></li>
+          <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">A <span class="text-[#84EC1B]">competitive</span> development rate</span></li>
+          <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">(Occasional) <span class="text-[#84EC1B]">free features</span></span></li>
+          <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">(Occasional) <span class="text-[#84EC1B]">free bug fixes</span></span></li>
+          <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">(Possible) <span class="text-[#84EC1B]">cost splitting</span> with other teams</span></li>
+          <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">A <span class="text-[#84EC1B]">marketing presence</span> in Flutter Bounty Hunter materials</span></li>
+        </ul>
+      </div>
+
+      <div id="WorkWithUs" class="py-[125px] px-[24px] text-center border-b-2 border-[#262626]">
+        <h2 class="text-white text-[32px] md:text-[42px] font-['Bowlby_One'] uppercase">Get Involved</h2>
+        <div class="text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">Build the future of Flutter with us</div>
+
+        <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+        <div class="mb-[96px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 text-left">
+          <!-- Charity -->
+          <div class="flex-1 p-[24px] md:p-[44px]">
+            <!-- Space for callout -->
+            <div class="md:h-[72px]"></div>
+
+            <div class="md:h-[72px]">
+              <div class="text-[24px] font-['Bowlby_One'] leading-[1.3rem]">Charity</div>
+              <div class="text-[14px] leading-[1.1rem]">Join the community.</div>
+            </div>
+
+            <div class="my-[24px] md:my-0 md:h-[124px]">
+              <div class="text-[48px] font-['Bowlby_One']">Free</div>
+            </div>
+
+            <a href="#OurPackages" class="block w-full mb-[48px] px-[16px] py-[8px] bg-[#4696E7] hover:bg-[#71B7FE] text-white rounded-lg text-center">Use What Others Funded</a>
+
+            <ol class="text-[14px]">
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Use Flutter Bounty Hunter tools as they are.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">File issues for bugs and features. We'll work on them when/if we have time for charity work.<span></span></li>
+            </ol>
+          </div>
+
+          <!-- Sponsor Matt -->
+          <div class="flex-1 mt-[48px] md:mt-0 p-[24px] md:p-[44px]">
+            <!-- Space for callout -->
+            <div class="md:h-[72px]"></div>
+
+            <div class="md:h-[72px]">
+              <div class="text-[24px] font-['Bowlby_One'] leading-[1.3rem]">Individual Sponsor</div>
+              <div class="text-[14px] leading-[1.1rem]">Sponsor Matt as an individual to do work for the Flutter community.</div>
+            </div>
+
+            <div class="my-[24px] md:my-0 md:h-[124px]">
+              <div class="text-[48px] font-['Bowlby_One']">$20<span class="text-[24px]">/MONTH</span></div>
+            </div>
+
+            <a href="https://github.com/sponsors/matthew-carroll" target="_blank" class="block w-full mb-[48px] px-[16px] py-[8px] bg-[#4696E7] hover:bg-[#71B7FE] text-white rounded-lg text-center">Sponsor Matt</a>
+
+            <ol class="text-[14px]">
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Contributes to many packages.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Fixes bugs in Flutter framework.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Builds features for Flutter framework.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Publishes educational guides.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Publishes educational videos.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">Hosts community conversations.</span></li>
+            </ol>
+          </div>
+
+          <!-- Partial Funder -->
+          <div class="flex-1 mt-[48px] md:mt-0 p-[24px] md:p-[44px] bg-[#222324] rounded-xl">
+            <div class="mb-[24px] md:mb-0 md:h-[72px] font-['Bowlby_One']">Easiest Starting Point</div>
+
+            <div class="md:h-[72px]">
+              <div class="text-[24px] font-['Bowlby_One'] leading-[1.3rem]">Partial Funder</div>
+              <div class="text-[14px] leading-[1.1rem]">We build for you a la carte. Only pay for what you need.</div>
+            </div>
+
+            <div class="my-[24px] md:my-0 md:h-[124px]">
+              <div class="text-[48px] font-['Bowlby_One']">$100<span class="text-[24px]">/HR</span>*</div>
+              <div class="text-[12px] text-[#919191] leading-[1.1em]">*Price decreases when sharing cost with other teams</div>
+            </div>
+
+            <button
+              onclick="openClientModalForPartialFunding()"
+              class="w-full mb-[48px] px-[16px] py-[8px] bg-[#4696E7] hover:bg-[#71B7FE] text-white rounded-lg"
+            >Fund What You Need</button>
+
+            <ol class="text-[14px]">
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll implement your features.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll fix your bugs.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll give you a small callout as a funder.</span></li>
+            </ol>
+          </div>
+
+          <!-- Primary Funder -->
+          <div class="flex-1 mt-[48px] md:mt-0 p-[24px] md:p-[44px]">
+            <!-- Space for callout -->
+            <div class="md:h-[72px]"></div>
+
+            <div class="md:h-[72px]">
+              <div class="text-[24px] font-['Bowlby_One'] leading-[1.3rem]">Primary Funder</div>
+              <div class="text-[14px] leading-[1.1rem]">Become a pillar of the community by funding the continuous health of a package.</div>
+            </div>
+
+            <div class="my-[24px] md:my-0 md:h-[124px]">
+              <div class="text-[48px] font-['Bowlby_One']">$85<span class="text-[24px]">/HR</span>*</div>
+              <div class="text-[12px] text-[#919191] leading-[1.1em]">*Price decreases when sharing cost with other teams</div>
+            </div>
+
+            <button
+              onclick="openClientModalForPrimaryFunding()"
+              class="w-full mb-[48px] px-[16px] py-[8px] bg-[#4696E7] hover:bg-[#71B7FE] text-white rounded-lg"
+            >Fund The Health of the Project</button>
+
+            <ol class="text-[14px]">
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll implement your features.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll fix your bugs.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll fix bugs for the community.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll add critical features for the community.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We're on your schedule.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We're just a call away at any time.</span></li>
+              <li class="flex flex-row mb-[8px]"><i class="fa-solid fa-circle-check mr-[8px] align-middle !leading-[1.5em]"></i><span class="flex-1">We'll promote you as a major funder.</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="mx-[64px] md:mx-auto my-[48px] max-w-[400px] h-[1px] bg-[#292929]"></div>
+
+        <h3 class="text-white text-[22px] md:text-[32px] font-['Bowlby_One'] uppercase">Referral Program</h3>
+        <div class="mb-[24px] text-[#ADADAD] text-[14px] md:text-[18px] font-light tracking-[5px] uppercase">Connect us with new clients and get paid</div>
+        <p class="mx-auto max-w-[600px] text-left">At the Flutter Bounty Hunters we’re always looking for new clients who understand the power of professional open source development. If you know such a company, we’ll pay you a referral fee to introduce us to them. See our <a href="/referral-program" class="text-[#4488FF] underline">referral program</a> page for all the details, and happy hunting!</p>
+      </div>
     </main>
+    <footer></footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+         emailjs.init({
+           publicKey: "fOv5J8j1CnmUDzs_1",
+           limitRate: {
+            // Set the limit rate for the application
+            id: 'app',
+            // Allow 1 request per 10s
+            throttle: 10000,
+          },
+         });
+      })();
+
+      var hireMeModal = document.getElementById("hireMeModal");
+      hireMeModal.addEventListener("click", (e) => {
+        closeHireMeModal();
+      });
+
+      var hireMePopup = document.getElementById("hireMePopup");
+      hireMePopup.addEventListener("click", (e) => {
+        console.log("stopClickEvent!: ", e);
+        e.stopPropagation();
+      });
+
+      var hireMeForm = document.getElementById("hireMeForm");
+      hireMeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitHireMeModal();
+      });
+
+      function openClientModalForPartialFunding() {
+        var select = document.getElementById("typeOfFunding");
+        select.value = "partial-funder";
+
+        openClientModal();
+      }
+
+      function openClientModalForPrimaryFunding() {
+        var select = document.getElementById("typeOfFunding");
+        select.value = "primary-funder";
+
+        openClientModal();
+      }
+
+      function openClientModal() {
+        var modal = document.getElementById("hireMeModal");
+        modal.classList.remove("hidden");
+      }
+
+      function submitHireMeModal() {
+        var hasError = false;
+
+        var nameField = document.getElementById("name");
+        var name = nameField.value;
+        if (name.trim().length == 0) {
+          nameField.classList.remove("border-slate-300");
+          nameField.classList.add("border-red-500");
+          hasError = true;
+        } else {
+          nameField.classList.remove("border-red-500");
+          nameField.classList.add("border-slate-300");
+        }
+
+        var emailField = document.getElementById("email");
+        var email = emailField.value;
+        if (email.trim().length == 0) {
+          emailField.classList.remove("border-slate-300");
+          emailField.classList.add("border-red-500");
+          hasError = true;
+        } else {
+          emailField.classList.remove("border-red-500");
+          emailField.classList.add("border-slate-300");
+        }
+
+        var typeOfFundingField = document.getElementById("typeOfFunding");
+        var typeOfFunding = typeOfFundingField.value;
+
+        var messageField = document.getElementById("message");
+        var message = messageField.value;
+        if (message.trim().length == 0) {
+          messageField.classList.remove("border-slate-300");
+          messageField.classList.add("border-red-500");
+          hasError = true;
+        } else {
+          messageField.classList.remove("border-red-500");
+          messageField.classList.add("border-slate-300");
+        }
+
+        if (hasError === true) {
+          // User needs to provide more info.
+          return;
+        }
+
+        emailjs.send(
+          "service_vcpx8t4",
+          "template_fbh",
+          {
+            "reply_to": email,
+            "from_name": name,
+            "type_of_funding": typeOfFunding,
+            "message": message,
+          }
+        ).catch((error) => {
+          alert("Oops. Something went wrong when we tried to send your message. Please try again.\n\nIf it's still a problem then please visit me on Twitter/X @SuprDeclarative.");
+        });
+
+        closeHireMeModal();
+      }
+
+      function closeHireMeModal() {
+        var modal = document.getElementById("hireMeModal");
+        modal.classList.add("hidden");
+
+        clearHireMeModal();
+      }
+
+      function clearHireMeModal() {
+        var nameField = document.getElementById("name");
+        nameField.value = "";
+
+        var emailField = document.getElementById("email");
+        emailField.value = "";
+
+        var messageField = document.getElementById("message");
+        messageField.value = "";
+      }
+    </script>
   </body>
 </html>
