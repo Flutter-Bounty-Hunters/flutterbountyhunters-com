@@ -22,7 +22,7 @@ jobs:
         run: chmod +x tailwindcss
 
       # Build the static site
-      - run: dart run bin/super_declarative_com.dart
+      - run: dart run bin/flutterbountyhunters_com.dart
         env:
           GHUB_DOC_WEBSITE_TOKEN: ${{ vars.GHUB_DOC_WEBSITE_TOKEN }}
 
