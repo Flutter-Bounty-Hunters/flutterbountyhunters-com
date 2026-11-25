@@ -1,3 +1,905 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    /* Keeps the sticky navbar from covering the top of a section when jumping to it. */
+    scroll-padding-top: 64px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /*
+    A bar of projected light, from the same projector as the hero's hologram: crossed by rolling scanlines,
+    edged with bright lines, and measured by the ruler along the hologram's bottom edge.
+  */
+  .navbar {
+    --light: 102 197 255;
+    --beam: 40 150 255;
+    --scanline: 4px;
+    font-family: "Oxanium", sans-serif;
+    font-weight: 600;
+    background:
+      linear-gradient(to bottom, rgb(var(--beam) / 0.34), rgb(var(--beam) / 0.24)),
+      rgb(5 11 20 / 0.92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 44px rgb(var(--beam) / 0.16);
+    transition: box-shadow 300ms;
+  }
+
+  .navbar[data-stuck] {
+    box-shadow: 0 6px 36px rgb(var(--beam) / 0.28), 0 4px 20px rgb(0 0 0 / 0.6);
+  }
+
+  .navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to bottom, transparent 0 45%, rgb(0 4 12 / 0.5) 65% 88%, transparent 100%) 0 0 / 100% var(--scanline);
+    animation: navbar-scanlines 0.5s linear infinite;
+    pointer-events: none;
+  }
+
+  .navbar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgb(var(--light) / 0.6) 0 0) 0 0 / 100% 1px no-repeat,
+      linear-gradient(rgb(var(--light) / 0.6) 0 0) 0 100% / 100% 1px no-repeat,
+      linear-gradient(to right, rgb(var(--light) / 0.5) 1px, transparent 0) 50% 100% / 24px 5px repeat-x;
+    pointer-events: none;
+  }
+
+  .navbar-link {
+    @apply relative flex items-center h-[48px] lg:h-[36px] lg:px-[12px] text-[15px] uppercase whitespace-nowrap;
+    outline: none;
+    color: #8fd8ff;
+    text-shadow: 0 0 10px rgb(var(--beam) / 0.8);
+    transition: color 200ms, text-shadow 200ms;
+  }
+
+  .navbar-link:hover,
+  .navbar-link:focus-visible,
+  .navbar-link[aria-current] {
+    color: #e6f9ff;
+    text-shadow: 0 0 12px rgb(var(--light) / 0.9);
+  }
+
+  .navbar-target {
+    position: absolute;
+    top: 50%;
+    height: 48px;
+    margin: -24px -6px 0;
+    padding: 0 6px;
+    box-sizing: content-box;
+    background: radial-gradient(70% 100% at 50% 100%, rgb(var(--light) / 0.26), transparent);
+    opacity: 0;
+    transform: scale(1.12, 1.25);
+    transition: left 280ms cubic-bezier(0.2, 0.8, 0.2, 1), width 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 200ms, transform 200ms;
+    pointer-events: none;
+  }
+
+  .navbar-target[data-locked] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The hologram's corner brackets: a full outline, masked down to its corners. */
+  .navbar-target::before {
+    --corner: linear-gradient(#000 0 0);
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgb(var(--light));
+    -webkit-mask: var(--corner) 0 0, var(--corner) 100% 0, var(--corner) 0 100%, var(--corner) 100% 100%;
+    mask: var(--corner) 0 0, var(--corner) 100% 0, var(--corner) 0 100%, var(--corner) 100% 100%;
+    -webkit-mask-size: 14px 10px;
+    mask-size: 14px 10px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* Titles in the hero title's worn metal, lit from below. */
+  .services-title,
+  .service-title,
+  .clients-title,
+  .funders-title {
+    --beam: 40 150 255;
+    font-size: clamp(30px, 9vw, 60px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: transparent;
+    background: url("/images/funders/rust.svg"), linear-gradient(to bottom, #a8978a 25%, #e9d9c8 70%, #d3ecff 98%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 1px 0 #3b5f80) drop-shadow(0 4px 10px rgb(var(--beam) / 0.4));
+  }
+
+  /* The services section, with text and images that alternate sides on larger screens. */
+  .services {
+    padding: 72px 24px 16px;
+    font-family: "Oxanium", sans-serif;
+  }
+
+  .services-title {
+    text-align: center;
+  }
+
+  .service {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 8px;
+    margin: 40px auto 0;
+    max-width: 1120px;
+    text-align: center;
+  }
+
+  .service-text {
+    flex: 1;
+    max-width: 460px;
+  }
+
+  .service-title {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .service-description {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.55;
+    color: #c3d6e8;
+  }
+
+  .service-link {
+    color: #8fd8ff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 200ms;
+  }
+
+  .service-link:is(:hover, :focus-visible) {
+    color: #e6f9ff;
+  }
+
+  .service-image {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+  }
+
+  @media (min-width: 768px) {
+    .services {
+      padding: 100px 48px 0;
+    }
+
+    .service {
+      flex-direction: row;
+      gap: 5%;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .service:nth-of-type(even) {
+      flex-direction: row-reverse;
+    }
+
+    .service-title {
+      font-size: clamp(26px, 2.8vw, 38px);
+    }
+
+    /* Images hang outside the content width, without moving the text. */
+    .service-image {
+      --overhang: clamp(40px, calc((100vw - 1120px) / 2), 220px);
+      position: relative;
+      left: var(--overhang);
+      width: 52%;
+      max-width: 600px;
+    }
+
+    .service:nth-of-type(even) .service-image {
+      left: calc(-1 * var(--overhang));
+    }
+  }
+
+  /* The happy clients section, with a client's testimonial in a panel of their brand color. */
+  .clients {
+    padding: 96px 24px 112px;
+    font-family: "Oxanium", sans-serif;
+  }
+
+  .clients-title {
+    text-align: center;
+  }
+
+  .client {
+    position: relative;
+    overflow: hidden;
+    margin: 32px auto 0;
+    padding: 36px 28px 0;
+    max-width: 1120px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.55;
+    color: #dfe5ff;
+    background: linear-gradient(110deg, var(--brand) 40%, var(--brand-light));
+    border-radius: 30px;
+  }
+
+  .client-text p + p,
+  .client-text figcaption {
+    margin-top: 16px;
+  }
+
+  .client-text .client-lead {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  .client-name {
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .client-company:is(:hover, :focus-visible) {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* The client's logo, which runs off the bottom of the panel. */
+  .client-mark {
+    position: relative;
+    margin: 28px auto -14%;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .client-mark svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .client-mark img {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 39%;
+    height: auto;
+    transform: translateX(-50%);
+    border: solid #fff;
+    border-width: clamp(4px, 0.5vw, 7px);
+    border-radius: 50%;
+  }
+
+  @media (min-width: 768px) {
+    .clients {
+      padding: 180px 48px 200px;
+    }
+
+    .client {
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+      padding: 0 56px;
+      min-height: 430px;
+    }
+
+    .client-text {
+      position: relative;
+      z-index: 1;
+      padding: 48px 0;
+      width: 57%;
+    }
+
+    .client-text .client-lead {
+      font-size: clamp(28px, 2.8vw, 40px);
+    }
+
+    .client-mark {
+      position: absolute;
+      right: 24px;
+      bottom: -64px;
+      margin: 0;
+      width: 44%;
+      max-width: 500px;
+    }
+
+    .client-mark img {
+      top: -8%;
+    }
+  }
+
+  /*
+    The funders section, where the bounty hunter's neck lights project the funders' logos.
+
+    On larger screens, the section is a 1440x1080 layout, measured in "--u" units. The unit shrinks with the
+    window. On desktop it's also halved, so that the layout fills half of the window below the navbar.
+  */
+  .funders {
+    --beam: 40 150 255;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 56px 16px calc(42vw + 120px);
+    font-family: "Oxanium", sans-serif;
+    text-align: center;
+    background:
+      radial-gradient(62% 92% at 50% 92%, rgb(var(--beam) / 0.24), rgb(var(--beam) / 0.15) 28%, rgb(var(--beam) / 0.07) 54%, rgb(var(--beam) / 0.02) 78%, transparent),
+      linear-gradient(to bottom, #0a0807, #100e0f 60%, #0a0807);
+  }
+
+  .funders-beams {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    filter: blur(1px);
+  }
+
+  /* Only the top half of the hunter is visible, above the bottom of the section. */
+  .funders-hunter {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: -1;
+    width: 150vw;
+    max-width: none;
+    height: auto;
+    transform: translate(-50%, 50%);
+    pointer-events: none;
+  }
+
+  .funders-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px 8px;
+    margin-top: 48px;
+  }
+
+  .funder {
+    --logo: 72px;
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    width: 30%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #c4eeff;
+    white-space: nowrap;
+    text-shadow: 0 0 14px rgb(50 160 255), 0 0 3px #04101f;
+    outline: none;
+  }
+
+  /* A pool of light behind the logo. */
+  .funder::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: calc(var(--logo) * 0.5);
+    z-index: -1;
+    width: calc(var(--logo) * 2.67);
+    height: calc(var(--logo) * 2.33);
+    transform: translate(-50%, -38%);
+    background: radial-gradient(closest-side, rgb(120 205 255 / 0.34), rgb(50 160 255 / 0.13) 55%, transparent);
+    opacity: 0.8;
+    transition: opacity 250ms;
+  }
+
+  .funder-logo {
+    position: relative;
+    display: block;
+    width: calc(var(--logo) * 1.26);
+    height: var(--logo);
+  }
+
+  .funder-logo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgb(140 220 255 / 0.9)) drop-shadow(0 0 20px rgb(50 160 255 / 0.95));
+    transition: opacity 250ms;
+  }
+
+  /* The padding leaves room for the logo's glow within the scanline mask. */
+  .funder-logo .funder-logo-hologram {
+    inset: -40px;
+    width: calc(100% + 80px);
+    height: calc(100% + 80px);
+    padding: 40px;
+    -webkit-mask: repeating-linear-gradient(#000 0 2px, rgb(0 0 0 / 0.62) 2px 4px);
+    mask: repeating-linear-gradient(#000 0 2px, rgb(0 0 0 / 0.62) 2px 4px);
+  }
+
+  /* When pointed at, the logo becomes solid light. */
+  .funder-logo .funder-logo-solid,
+  .funder:is(:hover, :focus-visible) .funder-logo-hologram {
+    opacity: 0;
+  }
+
+  .funder:is(:hover, :focus-visible) .funder-logo-solid,
+  .funder:is(:hover, :focus-visible)::before {
+    opacity: 1;
+  }
+
+  .funder:is(:hover, :focus-visible) {
+    color: #fff;
+  }
+
+  .funders-cta {
+    display: inline-block;
+    margin-top: 48px;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #03121f;
+    background: linear-gradient(to bottom, #b4f0ff, #62c4ff);
+    box-shadow: 0 0 34px rgb(var(--beam) / 0.75);
+    transition: filter 200ms, box-shadow 200ms;
+  }
+
+  .funders-cta:is(:hover, :focus-visible) {
+    filter: brightness(1.1);
+    box-shadow: 0 0 44px rgb(102 197 255 / 0.9);
+  }
+
+  @media (min-width: 768px) {
+    .funders {
+      --u: min(100vw / 1440, clamp(0.68px, (100svh - 64px) / 1080, 1.15px));
+      padding: 0;
+    }
+
+    .funders-stage {
+      position: relative;
+      margin: 0 auto;
+      width: calc(1440 * var(--u));
+      height: calc(1080 * var(--u));
+    }
+
+    .funders-hunter {
+      width: calc(1063 * var(--u));
+    }
+
+    .funders-title {
+      padding-top: calc(74 * var(--u));
+      font-size: calc(84 * var(--u));
+      background-origin: content-box;
+    }
+
+    .funders-list {
+      display: contents;
+    }
+
+    .funder {
+      --logo: calc(116 * var(--u));
+      position: absolute;
+      left: calc(var(--x) * var(--u));
+      top: calc(var(--y) * var(--u));
+      gap: calc(20 * var(--u));
+      width: calc(230 * var(--u));
+      transform: translate(-50%, -50%);
+      font-size: max(13px, calc(25 * var(--u)));
+      line-height: 1.5;
+    }
+
+    .funders-cta {
+      position: absolute;
+      left: 50%;
+      top: calc(552 * var(--u));
+      margin: 0;
+      padding: calc(14 * var(--u)) calc(34 * var(--u));
+      transform: translateX(-50%);
+      font-size: max(14px, calc(23 * var(--u)));
+      white-space: nowrap;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .funders {
+      --u: calc(0.5 * min(100vw / 1440, clamp(0.68px, (100svh - 64px) / 1080, 1.15px)));
+      padding-top: 100px;
+    }
+
+    .funder-logo img {
+      filter: drop-shadow(0 0 2px rgb(140 220 255 / 0.9)) drop-shadow(0 0 10px rgb(50 160 255 / 0.95));
+    }
+
+    .funder-logo .funder-logo-hologram {
+      -webkit-mask: repeating-linear-gradient(#000 0 1px, rgb(0 0 0 / 0.62) 1px 2px);
+      mask: repeating-linear-gradient(#000 0 1px, rgb(0 0 0 / 0.62) 1px 2px);
+    }
+
+    .funders-title {
+      filter: drop-shadow(0 1px 0 #3b5f80) drop-shadow(0 4px 8px rgb(var(--beam) / 0.4));
+    }
+
+    .funders-cta {
+      box-shadow: 0 0 17px rgb(var(--beam) / 0.75);
+    }
+
+    .funders-cta:is(:hover, :focus-visible) {
+      box-shadow: 0 0 22px rgb(102 197 255 / 0.9);
+    }
+  }
+
+  /* The work with us section, where visitors ask for what they need. */
+  .work {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 96px 20px;
+    min-height: min(100svh - 64px, 900px);
+    overflow: hidden;
+    font-family: "Geist", sans-serif;
+    font-size: 16px;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+    text-align: center;
+    color: #a4abb4;
+  }
+
+  .work-title {
+    font-size: clamp(40px, 5vw, 54px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: #fff;
+  }
+
+  .work-subtitle {
+    margin-top: 14px;
+    font-size: 18px;
+  }
+
+  .work-ask {
+    position: relative;
+    margin: 44px auto 0;
+    width: 100%;
+    max-width: 880px;
+  }
+
+  /* Soft light behind the form. */
+  .work-ask::before {
+    content: "";
+    position: absolute;
+    inset: -70px 0 -90px;
+    background:
+      radial-gradient(closest-side at 30% 55%, rgb(40 150 255 / 0.42), transparent),
+      radial-gradient(closest-side at 70% 50%, rgb(60 80 255 / 0.32), transparent),
+      radial-gradient(closest-side at 52% 80%, rgb(220 150 100 / 0.2), transparent);
+    filter: blur(36px);
+    pointer-events: none;
+  }
+
+  .work-form {
+    position: relative;
+    padding: 20px;
+    text-align: left;
+    background: rgb(18 21 26 / 0.94);
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 26px;
+    box-shadow: 0 24px 70px rgb(0 0 0 / 0.5);
+    transition: border-color 150ms;
+  }
+
+  .work-form:focus-within {
+    border-color: rgb(255 255 255 / 0.26);
+  }
+
+  .work-message,
+  .work-message:focus {
+    display: block;
+    padding: 6px 8px;
+    width: 100%;
+    font-size: 19px;
+    line-height: 1.45;
+    color: #fff;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+    resize: none;
+  }
+
+  .work-form ::placeholder {
+    color: #8a939d;
+  }
+
+  .work-message[aria-invalid]::placeholder,
+  .work-field[aria-invalid]::placeholder {
+    color: #ff9d94;
+  }
+
+  .work-controls {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .work-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .work-choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 15px 0 12px;
+    height: 40px;
+    font-size: 15px;
+    color: #b7bec7;
+    border: 1px solid rgb(255 255 255 / 0.13);
+    border-radius: 99px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 150ms, background-color 150ms, border-color 150ms;
+  }
+
+  .work-choice:hover {
+    color: #fff;
+    background: rgb(255 255 255 / 0.05);
+  }
+
+  .work-choice input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .work-check {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid rgb(255 255 255 / 0.34);
+    border-radius: 5px;
+    transition: background-color 150ms, border-color 150ms;
+  }
+
+  .work-check svg {
+    width: 14px;
+    height: 14px;
+    color: #06182a;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 150ms, transform 150ms;
+  }
+
+  .work-choice:has(:checked) {
+    color: #e3f3ff;
+    background: rgb(70 160 255 / 0.2);
+    border-color: rgb(110 190 255 / 0.45);
+  }
+
+  .work-choice:has([aria-invalid]) {
+    color: #ff9d94;
+    border-color: #ff8a80;
+  }
+
+  .work-choice [aria-invalid] + .work-check {
+    border-color: #ff8a80;
+  }
+
+  .work-choice :checked + .work-check {
+    background: #8fd4ff;
+    border-color: #8fd4ff;
+  }
+
+  .work-choice :checked + .work-check svg {
+    opacity: 1;
+    transform: none;
+  }
+
+  .work-choice:has(:focus-visible),
+  .work-send:focus-visible {
+    outline: 2px solid #8fd4ff;
+    outline-offset: 2px;
+  }
+
+  /* The name and email, across the top of the sheet. */
+  .work-sender {
+    margin: -20px -20px 14px;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .work-field,
+  .work-field:focus {
+    display: block;
+    padding: 0 28px;
+    width: 100%;
+    height: 56px;
+    font-size: 16px;
+    color: #fff;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .work-field + .work-field {
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .work-field:focus {
+    box-shadow: inset 0 -2px #8fd4ff;
+  }
+
+  .work-field[aria-invalid] {
+    box-shadow: inset 0 -2px #ff8a80;
+  }
+
+  .work-send {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    color: #0a0807;
+    background: #fff;
+    border-radius: 50%;
+    transition: background-color 150ms, opacity 150ms;
+  }
+
+  .work-send:hover {
+    background: #d9e9f7;
+  }
+
+  .work-send:disabled {
+    opacity: 0.4;
+  }
+
+  .work-send svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .work-status {
+    position: relative;
+    margin-top: 14px;
+    min-height: 24px;
+    color: #d9ecfb;
+  }
+
+  .work-status[data-error] {
+    color: #ff9d94;
+  }
+
+  .work-facts {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 22px auto 0;
+    width: 100%;
+    max-width: 560px;
+    font-size: 15px;
+  }
+
+  .work-facts > div {
+    padding: 0 12px;
+  }
+
+  .work-facts > div + div {
+    border-left: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .work-fact {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  @media (min-width: 640px) {
+    .work-form {
+      padding: 24px;
+    }
+
+    .work-sender {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin: -24px -24px 18px;
+    }
+
+    .work-field,
+    .work-field:focus {
+      padding: 0 32px;
+      height: 60px;
+    }
+
+    .work-field:first-child:focus,
+    .work-field:first-child {
+      border-top-left-radius: 25px;
+    }
+
+    .work-field + .work-field,
+    .work-field + .work-field:focus {
+      border-top: 0;
+      border-left: 1px solid rgb(255 255 255 / 0.1);
+      border-top-right-radius: 25px;
+    }
+  }
+
+  /* Scanlines that roll down the hologram, cut out of the hologram image itself. */
+  .hologram-scanlines {
+    --scanline: 4px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0 45%, rgb(0 0 0 / 0.45) 65% 88%, #000 100%);
+    mask-image: linear-gradient(to bottom, #000 0 45%, rgb(0 0 0 / 0.45) 65% 88%, #000 100%);
+    -webkit-mask-size: 100% var(--scanline);
+    mask-size: 100% var(--scanline);
+    animation: hologram-scanlines 0.5s linear infinite;
+  }
+
+  /* A brighter scan bar that sweeps down the hologram, visible only where the hologram has light. */
+  .hologram-sweep {
+    background: linear-gradient(to bottom, transparent, rgb(120 210 255 / 0.1) 35%, rgb(190 240 255 / 0.6) 92%, transparent) no-repeat 0 -60% / 100% 32%;
+    -webkit-mask: url("/images/hero/subtitle-hologram.webp") 0 0 / 100% 100% no-repeat;
+    mask: url("/images/hero/subtitle-hologram.webp") 0 0 / 100% 100% no-repeat;
+    mix-blend-mode: screen;
+    animation: hologram-sweep 4.2s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hologram-scanlines {
+      animation: none;
+    }
+
+    .hologram-sweep {
+      display: none;
+    }
+
+    .navbar::before {
+      animation: none;
+    }
+
+    .navbar-target {
+      transition: none;
+    }
+  }
+}
+
+@keyframes hologram-scanlines {
+  from { -webkit-mask-position: 0 0; mask-position: 0 0; }
+  to { -webkit-mask-position: 0 var(--scanline); mask-position: 0 var(--scanline); }
+}
+
+@keyframes navbar-scanlines {
+  to { background-position: 0 var(--scanline); }
+}
+
+@keyframes hologram-sweep {
+  0% { background-position: 0 -60%; }
+  45%, 100% { background-position: 0 160%; }
+}
