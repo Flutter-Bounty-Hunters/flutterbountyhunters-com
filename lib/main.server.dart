@@ -29,6 +29,7 @@ void main() {
       // its URL has a query, e.g., "/?utm_source=x".
       base: null,
       meta: {
+        'description': siteDescription,
         'msapplication-TileColor': '#da532c',
         'msapplication-config': '/images/favicon/browserconfig.xml',
         'theme-color': '#ffffff',
@@ -36,10 +37,11 @@ void main() {
         // Twitter
         'twitter:card': 'summary_large_image',
         'twitter:site': '@FlutterBounties',
-        'twitter:url': '',
+        'twitter:url': '$siteUrl/',
         'twitter:title': siteTitle,
         'twitter:description': siteDescription,
         'twitter:image': _socialImageUrl,
+        'twitter:image:alt': _socialImageAlt,
       },
       head: [
         link(
@@ -63,35 +65,28 @@ void main() {
         link(rel: 'mask-icon', href: '/images/favicon/safari-pinned-tab.svg', attributes: {'color': '#5bbad5'}),
         link(rel: 'shortcut icon', href: '/images/favicon/favicon.ico'),
 
+        link(rel: 'canonical', href: '$siteUrl/'),
+
         // Open Graph Social Media
-        meta(content: '', attributes: {'property': 'og:url'}),
+        meta(content: '$siteUrl/', attributes: {'property': 'og:url'}),
         meta(content: siteTitle, attributes: {'property': 'og:title'}),
         meta(content: siteDescription, attributes: {'property': 'og:description'}),
         meta(content: _socialImageUrl, attributes: {'property': 'og:image'}),
+        meta(content: 'image/jpeg', attributes: {'property': 'og:image:type'}),
+        meta(content: '1200', attributes: {'property': 'og:image:width'}),
+        meta(content: '630', attributes: {'property': 'og:image:height'}),
+        meta(content: _socialImageAlt, attributes: {'property': 'og:image:alt'}),
         meta(content: 'website', attributes: {'property': 'og:type'}),
 
         // Compiled from styles/tailwind.css.
         link(href: '/styles/tailwind.css', rel: 'stylesheet'),
-
-        // Font Awesome
-        link(
-          rel: 'stylesheet',
-          href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
-          attributes: {
-            'integrity':
-                'sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==',
-            'crossorigin': 'anonymous',
-            'referrerpolicy': 'no-referrer',
-          },
-        ),
 
         // Google Fonts
         link(rel: 'preconnect', href: 'https://fonts.googleapis.com'),
         link(rel: 'preconnect', href: 'https://fonts.gstatic.com', attributes: {'crossorigin': ''}),
         link(
           href:
-              'https://fonts.googleapis.com/css2?family=Bowlby+One&family=Geist:ital,wght@0,400..700;1,400'
-              '&family=Geist+Mono:wght@400&family=Oxanium:wght@600;700;800&display=swap',
+              'https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400..700;1,400&family=Geist+Mono:wght@400&family=Oxanium:wght@600;700;800&display=swap',
           rel: 'stylesheet',
         ),
       ],
@@ -100,5 +95,8 @@ void main() {
   );
 }
 
-// The site's address was never filled into the social cards, so the image is linked from the root.
-const _socialImageUrl = '/images/social.png';
+// Social cards need the image's full address.
+const _socialImageUrl = '$siteUrl/images/social.jpg';
+const _socialImageAlt =
+    'Flutter Bounty Hunters. Squash bugs. Build tools. A bearded bounty hunter in rusty power armor, whose rifle '
+    'scope projects the tagline in blue light.';

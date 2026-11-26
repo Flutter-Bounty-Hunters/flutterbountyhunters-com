@@ -54,9 +54,9 @@ class HappyClients extends StatelessComponent {
               ],
             ),
             img(
-              src: '/images/clients/clearful_testimonial_jeff.png',
+              src: '/images/clients/clearful_testimonial_jeff.webp',
               alt: 'Jeffrey Bunn',
-              attributes: {'width': '256', 'height': '256'},
+              attributes: {'loading': 'lazy', 'width': '256', 'height': '256'},
             ),
           ]),
         ],

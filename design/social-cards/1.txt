@@ -1,0 +1,2 @@
+CONCEPT 1 - THE HERO, AS IS. The same composition as the website's desktop hero (ref-hero-desktop.png), adapted to the card: the character's upper body at the left third, holding the rifle level across his body, its scope beam reaching right to the glowing tagline panel. The three-line title fills the right half, above the tagline. Desert horizon low behind everything.
+REFERENCES: ref-hero-desktop.png, ref-bounty-hunter.png, ref-title.png, ref-subtitle-hologram.png, ref-desert-night.png

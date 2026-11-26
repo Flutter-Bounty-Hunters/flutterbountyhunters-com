@@ -22,7 +22,7 @@ class Funders extends StatelessComponent {
         alt: '',
         id: 'fundersHunter',
         classes: 'funders-hunter',
-        attributes: {'width': '1449', 'height': '810'},
+        attributes: {'loading': 'lazy', 'width': '1449', 'height': '810'},
       ),
       Component.element(
         tag: 'canvas',

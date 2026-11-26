@@ -1,0 +1,2 @@
+CONCEPT 2 - STANDING WATCH. The character stands full height, from his head to his knees, at the left of center, with the rifle resting casually on his right shoulder (like ref-bounty-hunter-resting.png). His lower body fades into darkness toward the ground. From the scope on his shoulder, the beam shines up and to the right onto the glowing tagline panel, which floats below the three-line title on the right side.
+REFERENCES: ref-hero-phone.png, ref-bounty-hunter-resting.png, ref-title.png, ref-subtitle-hologram.png, ref-desert-night.png

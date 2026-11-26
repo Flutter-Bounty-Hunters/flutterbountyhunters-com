@@ -18,13 +18,13 @@ class Team extends StatelessComponent {
             src: '/images/team/matt-bust.webp',
             alt: 'Bust of Matt in bounty hunter armor',
             classes: 'team-bust',
-            attributes: {'width': '976', 'height': '688'},
+            attributes: {'loading': 'lazy', 'width': '976', 'height': '688'},
           ),
           img(
-            src: '/images/team/matt.png',
+            src: '/images/team/matt.webp',
             alt: 'Matt',
             classes: 'team-photo',
-            attributes: {'width': '105', 'height': '105'},
+            attributes: {'loading': 'lazy', 'width': '105', 'height': '105'},
           ),
           div(classes: 'team-display', [
             h3(classes: 'team-name', [.text('Matt')]),
@@ -47,7 +47,7 @@ class Team extends StatelessComponent {
             src: '/images/team/matt-engraving.webp',
             alt: 'Former Flutter Team',
             classes: 'team-engraving',
-            attributes: {'width': '1952', 'height': '208'},
+            attributes: {'loading': 'lazy', 'width': '1952', 'height': '208'},
           ),
         ]),
         div(classes: 'team-member team-member-left', [
@@ -55,13 +55,13 @@ class Team extends StatelessComponent {
             src: '/images/team/simon-bust.webp',
             alt: 'Bust of Simon in bounty hunter armor',
             classes: 'team-bust',
-            attributes: {'width': '976', 'height': '688'},
+            attributes: {'loading': 'lazy', 'width': '976', 'height': '688'},
           ),
           img(
-            src: '/images/team/simon.png',
+            src: '/images/team/simon.webp',
             alt: 'Simon',
             classes: 'team-photo',
-            attributes: {'width': '105', 'height': '105'},
+            attributes: {'loading': 'lazy', 'width': '105', 'height': '105'},
           ),
           div(classes: 'team-display', [
             h3(classes: 'team-name', [.text('Simon')]),
@@ -84,7 +84,7 @@ class Team extends StatelessComponent {
             src: '/images/team/simon-engraving.webp',
             alt: 'Founder of Flutter Community',
             classes: 'team-engraving',
-            attributes: {'width': '1952', 'height': '208'},
+            attributes: {'loading': 'lazy', 'width': '1952', 'height': '208'},
           ),
         ]),
         div(classes: 'team-member team-member-right', [
@@ -92,13 +92,13 @@ class Team extends StatelessComponent {
             src: '/images/team/angelo-bust.webp',
             alt: 'Bust of Angelo in bounty hunter armor',
             classes: 'team-bust',
-            attributes: {'width': '976', 'height': '688'},
+            attributes: {'loading': 'lazy', 'width': '976', 'height': '688'},
           ),
           img(
-            src: '/images/team/angelo.png',
+            src: '/images/team/angelo.webp',
             alt: 'Angelo',
             classes: 'team-photo',
-            attributes: {'width': '104', 'height': '105'},
+            attributes: {'loading': 'lazy', 'width': '104', 'height': '105'},
           ),
           div(classes: 'team-display', [
             h3(classes: 'team-name', [.text('Angelo')]),
