@@ -1,0 +1,30 @@
+Each prompt was common.txt followed by the numbered prompt, with the REFERENCES and ASPECT RATIO line omitted. Named references were attached to the image tool.
+
+1-a.png — no additions
+1-b.png
+Compose on a landscape 4:3 canvas with a soft fade to warm near-black along all four edges, including the floor at the bottom. Place the Attributed Text dot directly on the bold words “every bug” and the Super Text Layout dot inside the blue highlight, and underline “Hunt down” as the link.
+1-c.png
+Use a landscape 4:3 canvas and leave a continuous empty near-black border so that the deck reflections die out before the bottom edge. Show four unbroken straight white leaders with visible terminal dots physically on the bold words “every bug”, the keyboard glass, the interior of the blue highlight, and the pasted photo, respectively.
+
+2-a.png — no additions
+2-b.png
+Make all five vertical caption lines touch the corresponding physical frame or cartridge at their top ends. Keep the cartridge blank and let the floor and hardware fade to warm near-black at every perimeter edge.
+2-c.png
+Each bottom caption has a vertical leader that starts immediately above the caption and physically meets the metal bottom edge of its matching panel or cartridge, with zero gap at the attachment point. Leave the cartridge completely unmarked and keep the floor softly vignetted.
+
+3-a.png — no additions
+3-b.png
+Compose in landscape 4:3 with the overhead light fading fully to near-black before the top edge. Keep the main glass free of toolbar letters and render only the specified document words and the letter A in its module.
+3-c.png
+Use landscape 4:3 with a continuous empty band of warm near-black on all sides, and keep all visible light beams and floor reflections within that border. Keep all surfaces free of logos and extra lettering, omit toolbar letter controls, and hang the small tag from the letter A itself.
+
+4-a.png — no additions
+4-b.png
+Inset the lamp, devices and bench within a soft warm near-black fade on all four edges, with no hardware cut off by the frame. Give the central editing screen greater visual weight and route each of the four cables separately from the central core to its own device.
+4-c.png
+Use a landscape 16:9 composition with a continuous empty warm near-black perimeter, lighting the workbench from a lamp outside the shot so neither a fixture nor the bench breaks the perimeter. Route four separate visible cables directly from the dominant central core to the four devices, and omit all toolbar lettering and hardware markings.
+
+5-a.png — no additions
+5-b.png
+Draw each callout as a single straight segment from its caption to the physical object, with the Super Text Layout segment touching the round selection handle directly. Soften the selection slab rim and caret to believable practical lighting and fade the floor completely into warm near-black before the frame edges.
+

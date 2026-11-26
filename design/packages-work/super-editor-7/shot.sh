@@ -1,0 +1,1 @@
+while read f h; do "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --user-data-dir=/private/tmp/claude-501/chf --virtual-time-budget=8000 --window-size=1920,$h --screenshot=$PWD/$f.png file://$PWD/$f.html </dev/null 2>/dev/null; ffmpeg -nostdin -v error -y -i $f.png -vf scale=800:-1 v$f.png; done < h.txt; 

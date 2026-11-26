@@ -1,0 +1,7 @@
+The image ref-canvas.png has a picture in the middle, surrounded by a flat gray border. Zoom out: extend the picture outward to fill the whole gray border, to make one single, seamless, wider and taller film still of the same scene. The part in the middle stays at exactly the same position and size, with the same giant container, doors, logo and light, and continues naturally with no visible seam.
+- LEFT of it: the long armored container continues to its far back end, and behind it the dark hangar wall with huge structural ribs, pipes and a dim work lamp.
+- ABOVE: the complete top edge of the container, then high above it the dark hangar roof: gantry crane beams, hanging chains and hooks, catwalks, haze, a few dim practical lamps.
+- BELOW: more wet, scarred steel deck plates in the foreground, with grates, puddles, oil stains and soft reflections of the container and the light.
+- RIGHT: the deck continues, the light and mist from the doorway fall off across it, and far behind in the haze are huge structural ribs and distant dim lamps of an immense hangar. Dark, quiet, low contrast, but real detail.
+Also remove ALL text, letters and lines, and remove the person, his case and his shadow completely.
+Full detail reaches every edge and corner: no gray, no border, no vignette, no fade to black. Film-still realism, worn gunmetal and rust, cold practical light, natural falloff. No text, no people, no vehicles, no robots, no creatures, no neon.

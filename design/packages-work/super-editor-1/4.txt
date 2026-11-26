@@ -1,0 +1,13 @@
+REFERENCES: ref-site.png. ASPECT RATIO 16:9.
+IDEA: "One editor, many apps". What you can build with it comes first.
+SCENE: A dark armory workbench, wide, straight on. Center, dominant: one compact armored power core, a heavy octagonal-cornered metal block like a small reactor housing with a glass front showing a bright line of text being edited, with a steel-blue selection, two round drag handles and a salmon caret. Four thick armored cables run from the core, two to each side, to FOUR different rugged field devices standing upright on the bench, each with a large clear screen running a different, beautiful, instantly recognizable app made of text editing: 
+far left, a wide laptop-like slab: a document with big heading, photograph of a desert canyon and paragraphs as soft gray bars; 
+inner left, a tall phone: a chat conversation of rounded message bubbles, with a message box and keyboard at the bottom; 
+inner right, a tall tablet: a checklist of five lines with square check boxes, two ticked; 
+far right, a wide slab: an AI writing app, where the last lines of gray bars are fading in, with a small salmon spark beside them.
+Devices are generous in size and sharply in focus. Warm practical lamp light from above, cold light from the screens.
+Below the bench, in empty black space, one quiet row of four small text columns separated by thin vertical lines.
+TEXT: Top center, large title "SUPER EDITOR". Under it one line: "One toolkit for every kind of writing".
+On the core's glass: "Write anything".
+Small word under each device, in order: "DOCUMENTS", "CHAT", "TASKS", "AI WRITING".
+Bottom row columns: "ATTRIBUTED TEXT" / "Text with styles and data"; "SUPER TEXT LAYOUT" / "Selections and carets"; "SUPER KEYBOARD" / "Keyboard visibility and size"; "SUPER EDITOR CLIPBOARD" / "Rich text copy and paste". Above the row, small centered words "INSIDE THE TOOLKIT".

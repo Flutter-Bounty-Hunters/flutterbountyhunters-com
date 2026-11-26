@@ -1,0 +1,8 @@
+High-fidelity design comp of one full-width section of a dark, premium website for a company that builds open source software packages for Flutter. Desktop layout, straight-on flat screenshot of the section only: no browser window, no device frame, no navigation bar.
+
+ART DIRECTION: Feature-film concept art and production still quality. Physically believable: real weight, real scale, machined gunmetal and oxidized steel, chipped paint, grease, scratches, rivets, worn edges, dust. Lit by a few real practical light sources with natural falloff, soft volumetric haze, deep blacks, subtle film contrast. Palette: near-black warm background (#0A0807), gunmetal, rust brown, pale bone-white paint, and restrained cold steel-blue light. Grounded and serious.
+AVOID: cartoon style, cel shading, thick outlines, comic or game-icon look, neon, glowing energy, laser beams, lens flares, plastic shine, floating holograms, HUD graphics, oversaturated blue, clutter, people in yellow machines, robots, aliens, creatures, gears, clockwork.
+
+THE CONTAINER: match the shape language of the reference container (ref-container.png): a huge armored cargo container with beveled octagonal ends, framed recessed panels, heavy corner castings, bolts and latches, and a worn white spray-stenciled Flutter logo. Redesign it with far more detail and realism, at the scale of a building.
+
+TYPE: exactly like ref-type.png: titles in worn, pale metal, heavy squared sans capitals, no glow. Body text is small, clean, light blue-gray, squared sans. Generous empty space around text. Sharp, correctly spelled text. Show ONLY the words listed under TEXT. No other words, labels, headings, numbers or fake text anywhere.

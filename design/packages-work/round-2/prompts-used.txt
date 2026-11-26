@@ -1,0 +1,19 @@
+a-1.png, a-2.png:
+Base prompt (common.txt + a.txt) with no added sentences.
+
+a-3.png, a-4.png:
+Base prompt (common.txt + a.txt) plus added sentence:
+CRITICAL SCALE AND FRAMING: Zoom in closely on the lower corner of the container so the container extends strictly beyond and is completely cut off by the top edge of the frame (do not show the top edge or roof of the container at all), and make the bounty hunter tiny, less than one-tenth of the image height.
+
+b-1.png, b-2.png:
+Base prompt (common.txt + b.txt) with no added sentences.
+
+b-3.png, b-4.png:
+Base prompt (common.txt + b.txt) plus added sentence:
+CRITICAL SCALE AND FRAMING: Frame the colossal container so its top and left sides extend completely out of the top-left of the image frame (never show the top roof or back end of the container), and draw the bounty hunter as a tiny distant silhouette less than one-tenth the height of the container doorway, holding only one case.
+
+c-1.png, c-2.png:
+Base prompt (common.txt + c.txt) with no added sentences. (Both met all criteria; no c-3 or c-4 needed.)
+
+d-1.png, d-2.png:
+Base prompt (common.txt + d.txt) with no added sentences. (Both met all criteria; no d-3 or d-4 needed.)

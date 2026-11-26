@@ -1,0 +1,9 @@
+The image ref-canvas.png has a picture in the middle, surrounded by a flat gray border. Extend the picture outward to fill the whole gray border, to make one single, seamless film still of the same scene, zoomed out. The part in the middle stays at exactly the same position and size, with the same giant armored container, doors, stenciled logo, light, and the same armored man walking out of the doorway with one case and his shadow on the floor. It continues naturally with no visible seam.
+
+The scene is a single colossal container standing alone in deep darkness, in its own pool of light, like a museum piece on a black stage:
+- ABOVE: the complete top edge of the container is visible, with its ridges and latches, faintly lit along its upper edges, with a thin veil of cold mist above it that dissolves into pure near-black.
+- LEFT: the long container continues to its far back end, with more armored panels, and gets gradually darker until its back end dissolves into pure near-black shadow.
+- BELOW: the wet, scarred steel deck continues a little toward the viewer with soft reflections of the light, then dissolves into pure near-black.
+- RIGHT: the light and the mist from the doorway fall off across the deck and dissolve into pure near-black.
+
+The outer part of the image, along all four edges and in all corners, is empty, flat, pure near-black (#0A0807). There are no walls, no ceiling, no beams, no lamps, no background objects and no hard edges. The falloff is soft, uneven and natural, like real light and mist, not an oval vignette. Film-still realism, worn gunmetal and rust. No text, no other people, no vehicles, no robots, no creatures, no neon, no gray border.
