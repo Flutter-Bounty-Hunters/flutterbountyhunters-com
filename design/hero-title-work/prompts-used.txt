@@ -1,0 +1,35 @@
+title-a.png
+
+Recreate this exact title graphic: the same three lines of text, FLUTTER, BOUNTY, HUNTERS, with the same letter shapes, the same left and right edges for each line, the same line spacing, the same riveted rusty steel plate faces with bright bevelled frames, the same small blue vent grilles and blue glowing seams, and the same dark ribbed extrusion. Change only the perspective: use one-point perspective with the vanishing point at the exact horizontal center of the image and at its vertical center. So letters left of center show their extrusion on their RIGHT side, letters right of center show their extrusion on their LEFT side, and letters at the center show almost no side extrusion. The top line's extrusion also angles slightly down toward the center, and the bottom line's extrusion angles slightly up toward the center. The extrusion depth is about the same as in the reference. The front faces stay flat and face the viewer, unchanged. Fully transparent background, no shadow, no glow outside the letters, no other text.
+
+Use the supplied image as the reference. Use a wide landscape canvas as close to 2.2:1 as possible, at the highest quality and resolution available.
+
+---
+
+title-b.png
+
+Recreate this exact title graphic: the same three lines of text, FLUTTER, BOUNTY, HUNTERS, with the same letter shapes, the same left and right edges for each line, the same line spacing, the same riveted rusty steel plate faces with bright bevelled frames, the same small blue vent grilles and blue glowing seams, and the same dark ribbed extrusion. Change only the perspective: use one-point perspective with the vanishing point at the exact horizontal center of the image and at its vertical center. So letters left of center show their extrusion on their RIGHT side, letters right of center show their extrusion on their LEFT side, and letters at the center show almost no side extrusion. The top line's extrusion also angles slightly down toward the center, and the bottom line's extrusion angles slightly up toward the center. The extrusion depth is about the same as in the reference. The front faces stay flat and face the viewer, unchanged. Fully transparent background, no shadow, no glow outside the letters, no other text.
+
+Use the supplied image as the reference. Use a wide landscape canvas as close to 2.2:1 as possible, at the highest quality and resolution available.
+
+Use the center only as the directional guide: shorten the depth to roughly 25–50 pixels on a 1500-pixel-wide canvas at the outermost letters, tapering to almost zero near the center. End each extrusion behind its own letter and keep open transparent gaps between all three rows, with clean alpha along the silhouette.
+
+---
+
+title-c.png
+
+Recreate this exact title graphic: the same three lines of text, FLUTTER, BOUNTY, HUNTERS, with the same letter shapes, the same left and right edges for each line, the same line spacing, the same riveted rusty steel plate faces with bright bevelled frames, the same small blue vent grilles and blue glowing seams, and the same dark ribbed extrusion. Change only the perspective: use one-point perspective with the vanishing point at the exact horizontal center of the image and at its vertical center. So letters left of center show their extrusion on their RIGHT side, letters right of center show their extrusion on their LEFT side, and letters at the center show almost no side extrusion. The top line's extrusion also angles slightly down toward the center, and the bottom line's extrusion angles slightly up toward the center. The extrusion depth is about the same as in the reference. The front faces stay flat and face the viewer, unchanged. Fully transparent background, no shadow, no glow outside the letters, no other text.
+
+Use the supplied image as the reference. Use a wide landscape canvas as close to 2.2:1 as possible, at the highest quality and resolution available.
+
+Trim the perspective extrusion to a short, consistent depth that projects roughly 5% of a letter’s height on the outer letters and nearly zero in the center; the ribbed sides must end before the next letter or row begins. Keep the reference’s original row edges and remove all colored fringe and stray pixels outside the steel silhouette.
+
+---
+
+title-d.png
+
+Recreate this exact title graphic: the same three lines of text, FLUTTER, BOUNTY, HUNTERS, with the same letter shapes, the same left and right edges for each line, the same line spacing, the same riveted rusty steel plate faces with bright bevelled frames, the same small blue vent grilles and blue glowing seams, and the same dark ribbed extrusion. Change only the perspective: use one-point perspective with the vanishing point at the exact horizontal center of the image and at its vertical center. So letters left of center show their extrusion on their RIGHT side, letters right of center show their extrusion on their LEFT side, and letters at the center show almost no side extrusion. The top line's extrusion also angles slightly down toward the center, and the bottom line's extrusion angles slightly up toward the center. The extrusion depth is about the same as in the reference. The front faces stay flat and face the viewer, unchanged. Fully transparent background, no shadow, no glow outside the letters, no other text.
+
+Use the supplied image as the reference. Use a wide landscape canvas as close to 2.2:1 as possible, at the highest quality and resolution available.
+
+Preserve the original face spacing, especially the narrow clear gap between the two Ts in FLUTTER, and give each glyph a short, discrete extrusion so all three row gaps remain open. Deliver a clean RGBA cutout with zero opacity in the gaps and beyond the antialiased steel edges, removing all red, yellow, white and gray matte residue or fringe.

@@ -772,7 +772,9 @@
   }
 
   .use-case {
-    --s: calc(100cqw / 1180);
+    /* On tablets, the layout is 1180 units wide. It stops growing on wide tablets, and is centered there. */
+    --s: min(100cqw / 1180, 0.72px);
+    --pad: max(0px, (100cqw - 1180 * var(--s)) / 2);
     --u: var(--s);
     --start: 0px;
     position: relative;
@@ -780,8 +782,8 @@
   }
 
   .use-case-title {
-    padding: 0 20px;
-    font-size: 15.4cqw;
+    padding: 0 calc(20px + var(--pad));
+    font-size: calc(182 * var(--s));
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.015em;
@@ -795,7 +797,7 @@
 
   .use-case-text {
     margin: 24px 0 44px;
-    padding: 0 24px;
+    padding: 0 calc(24px + var(--pad));
     max-width: 660px;
     font-size: 19px;
     font-weight: 600;
@@ -817,6 +819,7 @@
   }
 
   .use-case-screens {
+    margin: 0 var(--pad);
     -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
@@ -1278,7 +1281,7 @@
     --u: calc(0.82 * var(--s));
     display: grid;
     grid-template: calc(60 * var(--u)) 1fr / 1fr;
-    margin-left: calc(-20 * var(--u));
+    margin-left: calc(24 * var(--s));
     width: calc(1050 * var(--u));
     height: calc(950 * var(--u));
     overflow: hidden;
@@ -2623,8 +2626,14 @@
   .se-streaming span:nth-child(3) { opacity: 0.2; }
 
   @media (max-width: 639px) {
+    /* On phones, the layout is 560 units wide. It stops growing on wide phones, and is centered there. */
     .use-case {
-      --s: calc(100cqw / 560);
+      --s: min(100cqw / 560, 0.8px);
+      --pad: max(0px, (100cqw - 560 * var(--s)) / 2);
+    }
+
+    .use-case-title {
+      font-size: calc(86 * var(--s));
     }
 
     .se-wide-only,
@@ -2637,6 +2646,7 @@
     .se-document {
       --u: calc(0.85 * var(--s));
       grid-template-columns: 1fr;
+      margin-left: calc(18 * var(--s));
       width: calc(550 * var(--u));
       height: calc(900 * var(--u));
     }
@@ -2678,7 +2688,7 @@
   }
 
   /* On desktop, each screen has its own place, and the use cases alternate between the left and right of center. */
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     .super-editor {
       padding: 55px 0 180px;
     }
@@ -2694,7 +2704,9 @@
     }
 
     .use-case {
-      --s: min(50cqw / 1920, 0.625px);
+      /* Below 1280px wide, the layout stops shrinking, so that its text stays readable. */
+      --s: clamp(0.3333px, 50cqw / 1920, 0.625px);
+      --pad: 0px;
       --start: calc(50cqw - calc(960 * var(--s)) - calc(300 * var(--s)));
       margin-top: 0;
     }
@@ -2933,6 +2945,7 @@
      - radius, step: how far the items are from the puck, and the degrees between them.
      - frame: the width of the column that the section's layout is in. The column is centered on the page.
      - dock: how far the puck's center is from the edge of the column.
+     - fan: the height of the area that the puck and its items move in.
      - wall: how far the wall that the puck is mounted against is from the puck's center, when it's docked. Nothing past the
        walls can be seen, so they cut off a fifth of the puck, and the curve around it.
   */
@@ -2946,6 +2959,7 @@
     --start: 0px;
     --edge: calc(var(--start) + var(--dock) * var(--s));
     --wall: 126;
+    --fan: 840;
     container-type: inline-size;
     position: relative;
     overflow: hidden;
@@ -3002,13 +3016,13 @@
   .puck-stage {
     position: relative;
     margin-top: 24px;
-    height: calc(840 * var(--s));
   }
 
   /* There's a wall on each side of the stage. */
   .puck-walls {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    height: calc(var(--fan) * var(--s));
+    counter-reset: puck;
     clip-path: inset(-50vh calc(var(--edge) - var(--wall) * var(--s)));
   }
 
@@ -3016,9 +3030,10 @@
   .puck-stage::before {
     content: "";
     position: absolute;
+    z-index: 1;
     top: 0;
-    bottom: 0;
     right: calc(var(--edge) - var(--wall) * var(--s) - 1px);
+    height: calc(var(--fan) * var(--s));
     width: 2px;
     background: linear-gradient(transparent, #6f655c 15%, #6f655c 85%, transparent);
   }
@@ -3072,8 +3087,43 @@
     --size: var(--item);
     --u: calc(var(--s) * var(--item) / 196);
     z-index: 2;
-    overflow: hidden;
     background: #33404a;
+    counter-increment: puck;
+  }
+
+  .puck-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  /* Where the captions are a list, the items and the captions are numbered, to match them. */
+  .puck-item::after,
+  .puck-captions li::before {
+    content: counter(puck);
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    color: #14110f;
+    background: #ddcdbd;
+    border-radius: 50%;
+  }
+
+  .puck-item::after {
+    position: absolute;
+    left: 0;
+    top: 2%;
+    box-shadow: 0 0 0 3px #0a0908;
+  }
+
+  .puck[data-side="left"] .puck-item::after {
+    left: auto;
+    right: 0;
   }
 
   /* A curve that connects the items, as the package can draw. */
@@ -3087,17 +3137,28 @@
 
   .puck-captions {
     display: grid;
-    gap: 10px;
-    margin: 0;
+    gap: 12px;
+    margin: 28px 0 0;
     padding: 0 24px;
     list-style: none;
-    position: absolute;
-    top: calc(100% + 24px);
+    counter-reset: puck;
     font-size: 16px;
     font-weight: 600;
     line-height: 1.4;
     text-wrap: balance;
     color: #c3d6e8;
+  }
+
+  .puck-captions li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    align-items: start;
+    counter-increment: puck;
+  }
+
+  .puck-captions li::before {
+    margin-top: 0.5px;
   }
 
   .puck-captions b {
@@ -3251,9 +3312,18 @@
       #33404a;
   }
 
+  /* On phones, the layout is 390 units wide, and the puck is mounted on a wall at the edge of the page. */
   @media (max-width: 639px) {
     .puck {
-      padding-bottom: 330px;
+      --s: min(100cqw / 390, 1.3px);
+      --root: 170;
+      --item: 110;
+      --radius: 228;
+      --step: 30;
+      --wall: 51;
+      --dock: 59;
+      --fan: 520;
+      padding-bottom: 40px;
     }
   }
 
@@ -3263,6 +3333,8 @@
     }
 
     .puck-captions {
+      position: absolute;
+      margin: 0;
       left: 0;
       top: 50%;
       gap: 22px;
@@ -3291,9 +3363,17 @@
       padding: 0;
     }
 
+    .puck {
+      --fan: 740;
+    }
+
     .puck-stage {
       margin: 0;
-      height: calc(740 * var(--s));
+    }
+
+    .puck-item::after,
+    .puck-captions li::before {
+      display: none;
     }
 
     .puck-intro {
@@ -3329,6 +3409,7 @@
     .puck-captions {
       display: block;
       position: static;
+      margin: 0;
       padding: 0;
       font-size: max(12px, calc(15 * var(--s)));
       transition: opacity 200ms;
@@ -3339,6 +3420,7 @@
       --angle: calc(180deg - var(--i) * var(--step) * -1deg);
       --dx: calc(var(--radius) * cos(var(--angle)));
       --dy: calc(var(--radius) * sin(var(--angle)) * -1);
+      display: block;
       position: absolute;
       left: calc(100% - var(--edge) + var(--dx) * var(--s) - calc(296 * var(--s)));
       top: calc(50% + var(--dy) * var(--s));
@@ -3904,6 +3986,13 @@
     -webkit-mask-size: 100% var(--scanline);
     mask-size: 100% var(--scanline);
     animation: hologram-scanlines 0.5s linear infinite;
+  }
+
+  /* Below desktop, the subtitle is lit from below by the beam, so the hologram is brighter, to stand out on top of it. */
+  @media (max-width: 1023px) {
+    .hologram-scanlines {
+      filter: brightness(1.6) saturate(1.15) drop-shadow(0 0 6px rgb(120 210 255 / 0.55));
+    }
   }
 
   /* A brighter scan bar that sweeps down the hologram, visible only where the hologram has light. */

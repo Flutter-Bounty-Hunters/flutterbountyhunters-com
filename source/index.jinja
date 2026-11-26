@@ -50,41 +50,50 @@ base_url: https://flutterbountyhunters.com
 
   <body class="relative w-screen text-white font-[-apple-system, BlinkMacSystemFont, sans-serif] bg-[#0a0807]">
     <!-- Start of content -->
-    <header class="relative overflow-hidden min-h-[clamp(600px,88svh,1080px)] bg-[#080B14]">
+    <header class="relative overflow-hidden min-h-[max(600px,100svh)] lg:min-h-[clamp(600px,88svh,1080px)] bg-[#080B14]">
       <!-- Moonlit desert, painted at 2335x1080 with the skyline 60% of the way up -->
       <img src="/images/hero/desert-night.webp" width="2335" height="1080" alt="" class="absolute inset-0 w-full h-full max-w-none object-cover pointer-events-none">
 
       <!--
-        The translate values are the character's center of visual mass within the image, so that the
-        left/top values place that point, rather than the center of the image's bounding box (which
-        the rifle skews down and to the right).
+        Below desktop, the character stands still below the title, with his rifle resting on his shoulder.
+        His lower body is painted darker, toward the ground.
+        On desktop, the translate values are the character's center of visual mass within the image, so
+        that the left/top values place that point, rather than the center of the image's bounding box
+        (which the rifle skews down and to the right).
       -->
-      <img
-        id="bountyHunter"
-        src="/images/hero/bounty-hunter.webp"
-        width="1184"
-        height="1012"
-        alt="Flutter bounty hunter in power armor, holding a rifle"
-        fetchpriority="high"
-        class="absolute left-[45%] lg:left-[30%] top-1/2 translate-x-[-46.2%] translate-y-[-49%] w-auto h-auto max-w-[45%] lg:max-w-[34%] max-h-[40%] motion-safe:animate-float"
-      >
+      <picture>
+        <source media="(max-width: 1023px)" srcset="/images/hero/bounty-hunter-resting.webp" width="764" height="1468">
+        <img
+          id="bountyHunter"
+          src="/images/hero/bounty-hunter.webp"
+          width="1184"
+          height="1012"
+          alt="Flutter bounty hunter in power armor, holding a rifle"
+          fetchpriority="high"
+          class="absolute left-1/2 lg:left-[30%] top-[67%] lg:top-1/2 translate-x-[-50%] translate-y-[-50%] lg:translate-x-[-46.2%] lg:translate-y-[-49%] w-auto h-auto max-w-[70%] lg:max-w-[34%] max-h-[50%] lg:max-h-[40%] lg:motion-safe:animate-float"
+        >
+      </picture>
 
       <!-- Light projected from the rifle's scope onto the subtitle. Drawn by the script at the end of the page. -->
       <canvas id="scopeBeam" class="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen" aria-hidden="true"></canvas>
 
-      <div class="absolute inset-x-0 top-[65%] px-[24px] text-center lg:left-[51%] lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:pl-0 lg:text-left">
+      <div class="absolute z-[2] inset-x-0 top-[max(72px,11%)] px-[24px] text-center lg:left-[51%] lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:pl-0 lg:text-left">
         <h1>
+          <!-- Below desktop, the title is centered, so its perspective is centered too. -->
+          <picture>
+          <source media="(max-width: 1023px)" srcset="/images/hero/title-centered.webp" width="1400" height="621">
           <img
             src="/images/hero/title.webp"
             width="1500"
             height="678"
             alt="Flutter Bounty Hunters"
             fetchpriority="high"
-            class="mx-auto lg:mx-0 w-[min(86vw,420px)] lg:w-[min(35vw,760px)] max-w-none h-auto"
+            class="mx-auto lg:mx-0 w-[min(86vw,420px,calc(47svh-48px))] lg:w-[min(35vw,760px)] max-w-none h-auto"
           >
+          </picture>
         </h1>
         <p class="mt-[8px] lg:mt-[min(1.2vw,26px)]">
-          <span id="hologram" class="block relative mx-auto lg:mx-0 lg:ml-[max(-0.956vw,-20.8px)] w-[min(90vw,443px)] lg:w-[min(36.91vw,801.5px)]">
+          <span id="hologram" class="block relative mx-auto lg:mx-0 lg:ml-[max(-0.956vw,-20.8px)] w-[min(90vw,443px,calc(49.6svh-50px))] lg:w-[min(36.91vw,801.5px)]">
             <img
               src="/images/hero/subtitle-hologram.webp"
               width="1544"
@@ -552,28 +561,28 @@ base_url: https://flutterbountyhunters.com
             <div class="puck-walls">
               <div class="puck-level"></div>
               <div class="puck-item puck-item-drag" role="img" aria-label="A puck that has been dragged along a curving path, from where it was to where a finger holds it" style="--i: -2">
-                <svg class="puck-art" viewBox="0 0 196 196" aria-hidden="true"><path d="M121 142C150 132 154 104 126 96S80 84 84 56"/></svg><span class="puck-dot puck-ghost" style="--x: 98; --y: 146; --d: 46"></span><span class="puck-dot puck-touch" style="--x: 84; --y: 56; --d: 72"></span><span class="puck-dot puck-mini" style="--x: 84; --y: 56; --d: 46"></span>
+                <span class="puck-face"><svg class="puck-art" viewBox="0 0 196 196" aria-hidden="true"><path d="M121 142C150 132 154 104 126 96S80 84 84 56"/></svg><span class="puck-dot puck-ghost" style="--x: 98; --y: 146; --d: 46"></span><span class="puck-dot puck-touch" style="--x: 84; --y: 56; --d: 72"></span><span class="puck-dot puck-mini" style="--x: 84; --y: 56; --d: 46"></span></span>
               </div>
               <div class="puck-item puck-item-levels" role="img" aria-label="A puck with a menu, where one of its items has opened a second level of items, further out" style="--i: -1">
-                <svg class="puck-art" viewBox="0 0 196 196" aria-hidden="true"><path d="M43.8,42.5 A56 56 0 0 1 43.8,153.5"/><path d="M114.1,32.4 A102 102 0 0 1 114.1,163.6"/></svg><span class="puck-dot puck-dot-light" style="--x: 53.3; --y: 44.7; --d: 26"><svg><use href="#se-search"/></svg></span><span class="puck-dot puck-dot-light" style="--x: 81.3; --y: 65.1; --d: 26"><svg><use href="#se-image"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 92; --y: 98; --d: 26"><svg><use href="#se-pen"/></svg></span><span class="puck-dot puck-dot-light" style="--x: 81.3; --y: 130.9; --d: 26"><svg><use href="#se-link"/></svg></span><span class="puck-dot puck-dot-light" style="--x: 53.3; --y: 151.3; --d: 26"><svg><use href="#se-send"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 124.3; --y: 47; --d: 24"><svg><use href="#se-left"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 136.5; --y: 80.3; --d: 24"><svg><use href="#se-center"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 136.5; --y: 115.7; --d: 24"><svg><use href="#se-right"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 124.3; --y: 149; --d: 24"><svg><use href="#se-quote"/></svg></span><span class="puck-dot puck-mini" style="--x: 36; --y: 98; --d: 40"></span>
+                <span class="puck-face"><svg class="puck-art" viewBox="0 0 196 196" aria-hidden="true"><path d="M43.8,42.5 A56 56 0 0 1 43.8,153.5"/><path d="M114.1,32.4 A102 102 0 0 1 114.1,163.6"/></svg><span class="puck-dot puck-dot-light" style="--x: 53.3; --y: 44.7; --d: 26"><svg><use href="#se-search"/></svg></span><span class="puck-dot puck-dot-light" style="--x: 81.3; --y: 65.1; --d: 26"><svg><use href="#se-image"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 92; --y: 98; --d: 26"><svg><use href="#se-pen"/></svg></span><span class="puck-dot puck-dot-light" style="--x: 81.3; --y: 130.9; --d: 26"><svg><use href="#se-link"/></svg></span><span class="puck-dot puck-dot-light" style="--x: 53.3; --y: 151.3; --d: 26"><svg><use href="#se-send"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 124.3; --y: 47; --d: 24"><svg><use href="#se-left"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 136.5; --y: 80.3; --d: 24"><svg><use href="#se-center"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 136.5; --y: 115.7; --d: 24"><svg><use href="#se-right"/></svg></span><span class="puck-dot puck-dot-on" style="--x: 124.3; --y: 149; --d: 24"><svg><use href="#se-quote"/></svg></span><span class="puck-dot puck-mini" style="--x: 36; --y: 98; --d: 40"></span></span>
               </div>
               <div class="puck-item puck-item-menu" role="img" aria-label="A puck at an edge, with its menu fanned out around it" style="--i: 0">
-                <svg class="puck-art" viewBox="0 0 196 196" aria-hidden="true"><path d="M123.8,162.9 A70 70 0 0 1 123.8,33.1"/></svg><span class="puck-dot" style="--x: 119.3; --y: 160.9; --d: 36; background: #d8672f"><svg><use href="#se-bookmark"/></svg></span><span class="puck-dot" style="--x: 90.6; --y: 135.1; --d: 36; background: #7fb0d4"><svg><use href="#se-image"/></svg></span><span class="puck-dot" style="--x: 80; --y: 98; --d: 36; background: #efe6d9"><svg><use href="#se-pen"/></svg></span><span class="puck-dot" style="--x: 90.6; --y: 60.9; --d: 36; background: #74ad8f"><svg><use href="#se-mic"/></svg></span><span class="puck-dot" style="--x: 119.3; --y: 35.1; --d: 36; background: #e0a43c"><svg><use href="#se-send"/></svg></span><span class="puck-dot puck-mini" style="--x: 150; --y: 98; --d: 46"></span>
+                <span class="puck-face"><svg class="puck-art" viewBox="0 0 196 196" aria-hidden="true"><path d="M123.8,162.9 A70 70 0 0 1 123.8,33.1"/></svg><span class="puck-dot" style="--x: 119.3; --y: 160.9; --d: 36; background: #d8672f"><svg><use href="#se-bookmark"/></svg></span><span class="puck-dot" style="--x: 90.6; --y: 135.1; --d: 36; background: #7fb0d4"><svg><use href="#se-image"/></svg></span><span class="puck-dot" style="--x: 80; --y: 98; --d: 36; background: #efe6d9"><svg><use href="#se-pen"/></svg></span><span class="puck-dot" style="--x: 90.6; --y: 60.9; --d: 36; background: #74ad8f"><svg><use href="#se-mic"/></svg></span><span class="puck-dot" style="--x: 119.3; --y: 35.1; --d: 36; background: #e0a43c"><svg><use href="#se-send"/></svg></span><span class="puck-dot puck-mini" style="--x: 150; --y: 98; --d: 46"></span></span>
               </div>
               <div class="puck-item puck-item-keyboard" role="img" aria-label="A puck that has moved up, to stay above a keyboard" style="--i: 1">
-                <span class="puck-keys"><span><b>e</b><b>r</b><b>t</b><b>y</b><b>u</b><b>i</b></span><span><b>s</b><b>d</b><b>f</b><b>g</b><b>h</b><b>j</b><b>k</b></span><span><b>x</b><b>c</b><b>v</b><b>b</b><b>n</b><b>m</b></span></span><i class="puck-was"></i><svg class="puck-arrow" viewBox="0 0 20 60"><path d="M10 58V4M3 11l7-7 7 7"/></svg><span class="puck-dot puck-mini" style="--x: 98; --y: 57.7; --d: 60.7"></span>
+                <span class="puck-face"><span class="puck-keys"><span><b>e</b><b>r</b><b>t</b><b>y</b><b>u</b><b>i</b></span><span><b>s</b><b>d</b><b>f</b><b>g</b><b>h</b><b>j</b><b>k</b></span><span><b>x</b><b>c</b><b>v</b><b>b</b><b>n</b><b>m</b></span></span><i class="puck-was"></i><svg class="puck-arrow" viewBox="0 0 20 60"><path d="M10 58V4M3 11l7-7 7 7"/></svg><span class="puck-dot puck-mini" style="--x: 98; --y: 57.7; --d: 60.7"></span></span>
               </div>
               <div class="puck-item puck-item-throw" role="img" aria-label="A puck sliding across a rink, shown at each moment of its path, until it stops at the edge" style="--i: 2">
-                <span class="puck-dot puck-mini" style="--x: 30; --y: 98; --d: 48; opacity: 0.14"></span><span class="puck-dot puck-mini" style="--x: 36.2; --y: 98; --d: 48; opacity: 0.14"></span><span class="puck-dot puck-mini" style="--x: 50; --y: 98; --d: 48; opacity: 0.14"></span><span class="puck-dot puck-mini" style="--x: 67.1; --y: 98; --d: 48; opacity: 0.15"></span><span class="puck-dot puck-mini" style="--x: 84.8; --y: 98; --d: 48; opacity: 0.15"></span><span class="puck-dot puck-mini" style="--x: 101.3; --y: 98; --d: 48; opacity: 0.16"></span><span class="puck-dot puck-mini" style="--x: 115.9; --y: 98; --d: 48; opacity: 0.17"></span><span class="puck-dot puck-mini" style="--x: 128.2; --y: 98; --d: 48; opacity: 0.19"></span><span class="puck-dot puck-mini" style="--x: 138.3; --y: 98; --d: 48; opacity: 0.21"></span><span class="puck-dot puck-mini" style="--x: 146.3; --y: 98; --d: 48; opacity: 0.23"></span><span class="puck-dot puck-mini" style="--x: 152.6; --y: 98; --d: 48; opacity: 0.26"></span><span class="puck-dot puck-mini" style="--x: 157.3; --y: 98; --d: 48; opacity: 0.29"></span><span class="puck-dot puck-mini" style="--x: 160.8; --y: 98; --d: 48; opacity: 0.32"></span><span class="puck-dot puck-mini" style="--x: 163.3; --y: 98; --d: 48; opacity: 0.36"></span><span class="puck-dot puck-mini" style="--x: 165.1; --y: 98; --d: 48; opacity: 0.40"></span><span class="puck-dot puck-mini" style="--x: 166.3; --y: 98; --d: 48; opacity: 0.45"></span><span class="puck-dot puck-mini" style="--x: 167.1; --y: 98; --d: 48; opacity: 0.50"></span><span class="puck-dot puck-mini" style="--x: 167.6; --y: 98; --d: 48; opacity: 0.56"></span><span class="puck-dot puck-mini" style="--x: 167.9; --y: 98; --d: 48; opacity: 0.62"></span><span class="puck-dot puck-mini" style="--x: 168; --y: 98; --d: 48; opacity: 0.68"></span><span class="puck-dot puck-mini" style="--x: 168.1; --y: 98; --d: 48; opacity: 0.75"></span><span class="puck-dot puck-mini" style="--x: 168.1; --y: 98; --d: 48; opacity: 0.83"></span><span class="puck-dot puck-mini" style="--x: 168; --y: 98; --d: 48; opacity: 0.91"></span><span class="puck-dot puck-mini" style="--x: 168; --y: 98; --d: 48; opacity: 1.00"></span>
+                <span class="puck-face"><span class="puck-dot puck-mini" style="--x: 30; --y: 98; --d: 48; opacity: 0.14"></span><span class="puck-dot puck-mini" style="--x: 36.2; --y: 98; --d: 48; opacity: 0.14"></span><span class="puck-dot puck-mini" style="--x: 50; --y: 98; --d: 48; opacity: 0.14"></span><span class="puck-dot puck-mini" style="--x: 67.1; --y: 98; --d: 48; opacity: 0.15"></span><span class="puck-dot puck-mini" style="--x: 84.8; --y: 98; --d: 48; opacity: 0.15"></span><span class="puck-dot puck-mini" style="--x: 101.3; --y: 98; --d: 48; opacity: 0.16"></span><span class="puck-dot puck-mini" style="--x: 115.9; --y: 98; --d: 48; opacity: 0.17"></span><span class="puck-dot puck-mini" style="--x: 128.2; --y: 98; --d: 48; opacity: 0.19"></span><span class="puck-dot puck-mini" style="--x: 138.3; --y: 98; --d: 48; opacity: 0.21"></span><span class="puck-dot puck-mini" style="--x: 146.3; --y: 98; --d: 48; opacity: 0.23"></span><span class="puck-dot puck-mini" style="--x: 152.6; --y: 98; --d: 48; opacity: 0.26"></span><span class="puck-dot puck-mini" style="--x: 157.3; --y: 98; --d: 48; opacity: 0.29"></span><span class="puck-dot puck-mini" style="--x: 160.8; --y: 98; --d: 48; opacity: 0.32"></span><span class="puck-dot puck-mini" style="--x: 163.3; --y: 98; --d: 48; opacity: 0.36"></span><span class="puck-dot puck-mini" style="--x: 165.1; --y: 98; --d: 48; opacity: 0.40"></span><span class="puck-dot puck-mini" style="--x: 166.3; --y: 98; --d: 48; opacity: 0.45"></span><span class="puck-dot puck-mini" style="--x: 167.1; --y: 98; --d: 48; opacity: 0.50"></span><span class="puck-dot puck-mini" style="--x: 167.6; --y: 98; --d: 48; opacity: 0.56"></span><span class="puck-dot puck-mini" style="--x: 167.9; --y: 98; --d: 48; opacity: 0.62"></span><span class="puck-dot puck-mini" style="--x: 168; --y: 98; --d: 48; opacity: 0.68"></span><span class="puck-dot puck-mini" style="--x: 168.1; --y: 98; --d: 48; opacity: 0.75"></span><span class="puck-dot puck-mini" style="--x: 168.1; --y: 98; --d: 48; opacity: 0.83"></span><span class="puck-dot puck-mini" style="--x: 168; --y: 98; --d: 48; opacity: 0.91"></span><span class="puck-dot puck-mini" style="--x: 168; --y: 98; --d: 48; opacity: 1.00"></span></span>
               </div>
               <button type="button" class="puck-root" aria-expanded="true" aria-label="Puck menu"></button>
             </div>
             <ul class="puck-captions">
-              <li style="--i: -2"><b>Drag it around,</b> to keep it out of the way.</li>
-              <li style="--i: -1"><b>Menus within menus,</b> each level further out.</li>
-              <li style="--i: 0"><b>Tap it,</b> and your menu fans out.</li>
-              <li style="--i: 1"><b>When the keyboard opens,</b> it moves up.</li>
-              <li style="--i: 2"><b>Let go,</b> and it springs to the nearest edge.</li>
+              <li style="--i: -2"><span><b>Drag it around,</b> to keep it out of the way.</span></li>
+              <li style="--i: -1"><span><b>Menus within menus,</b> each level further out.</span></li>
+              <li style="--i: 0"><span><b>Tap it,</b> and your menu fans out.</span></li>
+              <li style="--i: 1"><span><b>When the keyboard opens,</b> it moves up.</span></li>
+              <li style="--i: 2"><span><b>Let go,</b> and it springs to the nearest edge.</span></li>
             </ul>
           </div>
         </section>
@@ -779,9 +788,10 @@ base_url: https://flutterbountyhunters.com
         const hologram = document.getElementById("hologram");
         const ctx = canvas.getContext("2d");
 
-        // Where the scope's front lens sits within the character image.
-        const LENS_X = 0.555;
-        const LENS_Y = 0.6255;
+        // Where the scope's front lens sits within the character image. Below desktop, the image is the
+        // character with the rifle resting on his shoulder, so the lens is somewhere else in it.
+        const LENS = { x: 0.555, y: 0.6255 };
+        const RESTING_LENS = { x: 0.3678, y: 0.109 };
 
         // Where the hologram's corner brackets sit within the hologram image.
         const FRAME = { left: 0.026, top: 0.193, right: 0.974, bottom: 0.8 };
@@ -841,7 +851,8 @@ base_url: https://flutterbountyhunters.com
           ctx.globalCompositeOperation = "lighter";
 
           const h = hunter.getBoundingClientRect();
-          const lens = { x: h.left - bounds.left + h.width * LENS_X, y: h.top - bounds.top + h.height * LENS_Y };
+          const at = hunter.currentSrc.includes("resting") ? RESTING_LENS : LENS;
+          const lens = { x: h.left - bounds.left + h.width * at.x, y: h.top - bounds.top + h.height * at.y };
 
           const p = hologram.getBoundingClientRect();
           if (h.width === 0 || p.width === 0) {
@@ -918,7 +929,7 @@ base_url: https://flutterbountyhunters.com
             ctx.fillStyle = g;
             ctx.fillRect(lens.x - radius, lens.y - radius, radius * 2, radius * 2);
           };
-          const size = h.width / 500;
+          const size = h.width / (at === RESTING_LENS ? 360 : 500);
           glow(90 * size, [[0, `rgba(50, 160, 255, ${0.55 * flicker})`], [0.35, `rgba(35, 130, 255, ${0.16 * flicker})`], [1, "rgba(20, 100, 255, 0)"]]);
           glow(15 * size, [[0, "rgba(255, 255, 255, 1)"], [0.3, "rgba(190, 240, 255, 0.95)"], [0.6, "rgba(60, 180, 255, 0.45)"], [1, "rgba(40, 150, 255, 0)"]]);
         }
@@ -1199,12 +1210,13 @@ base_url: https://flutterbountyhunters.com
 
         const section = document.querySelector('.puck');
         const stage = section.querySelector('.puck-stage');
+        const walls = stage.querySelector('.puck-walls');
         const root = stage.querySelector('.puck-root');
         const level = stage.querySelector('.puck-level');
         const items = [...stage.querySelectorAll('.puck-item')].map((el) => ({ el, x: 0, y: 0, vx: 0, vy: 0 }));
         const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
-        // Lengths are in units of the section's layout. Positions are from the stage's left, and its vertical center.
+        // Lengths are in units of the section's layout. Positions are from the left of the area that the puck moves in, and its vertical center.
         const layout = {};
         const puck = { x: 0, y: 0, vx: 0, vy: 0, scale: 1, vs: 0, pressed: false };
         let side = 'right', open = true, drag = null, frame = null, lastTime = 0, touched = false, switchTimer = null;
@@ -1213,8 +1225,8 @@ base_url: https://flutterbountyhunters.com
           const style = getComputedStyle(section);
           for (const name of ['root', 'radius', 'step', 'dock']) layout[name] = parseFloat(style.getPropertyValue(`--${name}`));
           layout.unit = root.offsetWidth / layout.root;
-          layout.width = stage.clientWidth / layout.unit;
-          layout.height = stage.clientHeight / layout.unit;
+          layout.width = walls.clientWidth / layout.unit;
+          layout.height = walls.clientHeight / layout.unit;
           // The puck docks at the edges of the layout's column, which is narrower than a wide page.
           const frame = parseFloat(style.getPropertyValue('--frame'));
           if (frame) layout.dock += Math.max((layout.width - frame) / 2, 0);
@@ -1394,7 +1406,7 @@ base_url: https://flutterbountyhunters.com
             if (!entries.some((entry) => entry.isIntersecting)) return;
             observer.disconnect();
             setTimeout(() => { if (!touched) setOpen(true); }, 300);
-          }, { threshold: 0.45 }).observe(stage);
+          }, { threshold: 0.45 }).observe(walls);
         }
         settle();
         paint();
