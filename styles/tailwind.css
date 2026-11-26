@@ -3495,11 +3495,14 @@
     pointer-events: none;
   }
 
+  /* The busts have a wider range, from darker darks to brighter brights, and stronger colors. */
   .team-bust {
+    --team-bust-tone: contrast(1.25) saturate(1.4);
     display: block;
     width: 100%;
     max-width: none;
     height: auto;
+    filter: var(--team-bust-tone);
   }
 
   .team-photo {
@@ -3651,7 +3654,7 @@
 
     /* Shades the pedestals behind it. */
     .team-member-front .team-bust {
-      filter: drop-shadow(0 0 22px rgb(0 0 0 / 0.95));
+      filter: var(--team-bust-tone) drop-shadow(0 0 22px rgb(0 0 0 / 0.95));
     }
 
     /* Further back: smaller, dimmer, and partly covered by Matt's pedestal. */
@@ -3669,7 +3672,11 @@
       margin-left: -4.55%;
     }
 
-    :is(.team-member-left, .team-member-right) :is(.team-bust, .team-engraving) {
+    :is(.team-member-left, .team-member-right) .team-bust {
+      filter: var(--team-bust-tone) brightness(0.8);
+    }
+
+    :is(.team-member-left, .team-member-right) .team-engraving {
       filter: brightness(0.8);
     }
   }
