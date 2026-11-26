@@ -1,0 +1,7 @@
+pose-b.png — built-in image generation, with both references supplied as conversation images.
+
+Paint this exact character from the character sheet: the same bald man with a ginger beard and gold aviator sunglasses, in the same bulky, rusty dark-brown power armor with glowing blue seams and lights, the white spray-painted Flutter logo on his right shoulder pad and the white star emblem on his left shoulder pad, the same chest plate, hoses, gauntlets and boots, and the same long dark rifle. Same painted, semi-realistic concept-art style and lighting as the sheet. Full body, standing, facing forward, like the top-left figure of the sheet. Change only the pose: he rests the rifle casually up against his right shoulder, barrel pointing up and slightly back over his shoulder, his right hand loosely holding the grip near his chest, his left arm relaxed at his side. A relaxed, confident stance, weight shifted onto one leg. Plain white background, with a soft shadow on the ground, and nothing else: no text, no other figures.
+
+Use the first reference’s top-left figure for the full-body design, its lower-left figure for the rifle details, and its close-ups for the face. Use the left figure of the second reference for armor details. Portrait framing, about 2:3, at the highest available quality and resolution.
+
+pose-a.png — already present at save time. Its generation prompt is unverified.

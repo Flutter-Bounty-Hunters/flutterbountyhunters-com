@@ -1,0 +1,11 @@
+REFERENCES: ref-site.png, ref-teardown.png (only for the idea of a clean exploded row of parts and its studio lighting; do not copy its parts or words). ASPECT RATIO 16:9.
+IDEA: "One screen, taken apart". Glass layers each carrying one part of the same sentence, coming together into the finished editor.
+SCENE: Museum-grade studio photograph on near-black. Four large panes of real thick glass in heavy machined octagonal-cornered metal frames, standing upright one behind another and spread apart along one line in a clean three-quarter exploded view, going from the back left to the front right. The FRONT pane, at the right, is by far the largest, brightest and heaviest, and shows a finished, beautiful text editor. Each pane behind it shows only its own part, at the same position, so the eye lines them up:
+Pane 1 (farthest back, left): only the plain sentence, with one word enclosed by a thin bracket with a small metal tag hanging from it.
+Pane 2: only a steel-blue text selection highlight band with two round drag handles and a thin salmon caret, no words.
+Pane 3: only a keyboard of blank square keys in its lower half.
+Pane 4 (front, the finished editor, large): heading, the sentence with that word in bold, the selection, the caret, the keyboard, all combined.
+To the right of the front pane, separate from the row, a small rugged cartridge with a connector, half plugged into the side of the front frame: an add-on.
+TEXT: Top left, large title "SUPER EDITOR" with one line below: "The document editing toolkit for Flutter".
+On panes 1 and 4, the sentence "Build a bolder editor". On pane 4 the word "bolder" is heavy bold, and above it is the heading "Field Notes".
+In one straight row along the bottom, five small captions, each directly under its part and joined to it by one thin vertical line: "ATTRIBUTED TEXT" / "Text with styles and data"; "SUPER TEXT LAYOUT" / "Selections, carets, highlights"; "SUPER KEYBOARD" / "Keyboard visibility and size"; "SUPER EDITOR" / "The finished editor"; "CLIPBOARD" / "Rich text copy and paste".

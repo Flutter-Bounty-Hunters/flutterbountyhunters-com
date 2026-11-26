@@ -1,0 +1,34 @@
+Each base prompt uses common.txt followed by the corresponding numbered file, with the REFERENCES line omitted. The named images were supplied as references.
+
+card-1-a.png
+No added sentences.
+
+card-1-b.png
+Hold the rifle nearly horizontal across the torso, keeping the scope’s blue projection visibly connected to the tagline panel.
+
+card-1-c.png
+Set the rifle’s long barrel parallel to the desert horizon, with the stock and muzzle at the same height in the frame. Keep the blue scope lens and its beam visibly connected to the tagline panel.
+
+card-2-a.png
+No added sentences.
+
+card-2-b.png
+Align the scope below the tagline panel and keep the brightest part of the upward-right projection cone centered on the tagline, with the title outside the cone.
+
+card-2-c.png
+The glowing front lens on the shoulder-carried rifle is the single projection source, with an unbroken cone running directly from that exact lens to the tagline panel. Adjust the panel’s height to meet the cone and keep all armor lights as small, non-projecting accents.
+
+card-3-a.png
+No added sentences.
+
+card-3-b.png
+Pull the close-up back just enough to leave at least 7% of the canvas height as clear space above the top of the hunter’s head, while retaining the blue underlighting and tight composition.
+
+card-4-a.png
+No added sentences.
+
+card-5-a.png
+No added sentences.
+
+card-5-b.png
+Leave at least 7% of the canvas height as clear sky above the highest point of the title lettering, keeping the figure small on the lower-left ridge.

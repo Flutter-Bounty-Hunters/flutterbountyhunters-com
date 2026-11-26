@@ -12,8 +12,10 @@ jobs:
       # Checkout the repository
       - uses: actions/checkout@v3
 
-      # Setup a Dart environment
+      # Setup a Dart environment. Jaspr 0.23's build packages don't support Dart 3.14 yet.
       - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: "3.13"
 
       # Download all the packages that the app uses
       - run: dart pub get
@@ -22,15 +24,17 @@ jobs:
         run: chmod +x tailwindcss
 
       # Build the static site
-      - run: dart run bin/flutterbountyhunters_com.dart
-        env:
-          GHUB_DOC_WEBSITE_TOKEN: ${{ vars.GHUB_DOC_WEBSITE_TOKEN }}
+      - run: ./tool/build.sh
+
+      # Don't deploy an unstyled site.
+      - name: Check that the stylesheet was built
+        run: test -s build/jaspr/styles/tailwind.css
 
       # Zip and upload the static site.
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build
+          path: ./build/jaspr
 
   deploy:
     name: Deploy

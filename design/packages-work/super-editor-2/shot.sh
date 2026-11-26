@@ -1,0 +1,1 @@
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --user-data-dir=/private/tmp/claude-501/chf --virtual-time-budget=8000 --window-size=1440,$2 --screenshot=$PWD/$1.png file://$PWD/$1.html 2>/dev/null

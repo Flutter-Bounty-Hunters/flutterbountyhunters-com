@@ -1,0 +1,6 @@
+Edit the image ref-scene.png. Keep the camera, framing, the giant armored container, its doors, stenciled logo, light and position EXACTLY as they are. Make only these changes:
+1. Remove ALL text, letters and lines on the right half.
+2. Remove the person, his case and his shadow completely; show the empty doorway, the light on the floor and the wet deck plates there.
+3. The right half is no longer an empty black area. Continue the same real place there: the wide, dark, scarred steel deck continuing to the right with the light and mist from the doorway falling off across it, and far behind, out of focus in haze, the huge structural ribs, gantry beams, hanging chains and a few distant, dim work lamps of an immense hangar. It stays dark, quiet and low in contrast, but has real, visible detail all the way to the right edge.
+4. Full detail all the way to every edge and corner of the image: no vignette, no fade to black, no border at the top, bottom, left or right.
+Same film-still realism, same worn gunmetal and rust, same cold light. No text, no logos other than the one on the container, no people, no vehicles, no robots, no creatures, no neon.

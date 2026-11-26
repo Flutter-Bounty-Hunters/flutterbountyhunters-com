@@ -1,0 +1,5 @@
+concept-2-c.png:
+Angle the side racks slightly toward the viewer so every stenciled case title ("OVERLORD", "ATTRIBUTED TEXT", "GOLDEN BRICKS", "FOLLOW THE LEADER", "SUPER TEXT LAYOUT", "TEST ROBOTS") is large, sharp, unwarped, and 100% spelled correctly.
+
+concept-5-c.png:
+Do not include the words "THE TEARDOWN" or any subtitle text under "SUPER TEXT LAYOUT", "ATTRIBUTED TEXT", "OVERLORD", or "FOLLOW THE LEADER" — show only those exact titles.
