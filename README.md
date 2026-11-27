@@ -23,6 +23,28 @@ Run `dart pub get` once. Then:
    intentional. Reload the browser by hand to see changes.
  * `tool/build.sh` builds the site into `build/jaspr`, the same way that it's built for deployment.
 
+## Contact form CAPTCHA setup
+
+The form requires a Google reCAPTCHA v2 checkbox response. Before deploying:
+
+1. Register a **reCAPTCHA v2 “I'm not a robot” checkbox** at
+   https://www.google.com/recaptcha/admin/create for the website's domain.
+2. Set the public `recaptchaSiteKey` in `lib/components/work_with_us.dart`.
+   The production site key is configured; the form refuses to send if the key is removed.
+3. In EmailJS, open template `template_fbh`, go to Settings, enable **reCAPTCHA V2 verification**,
+   and save the matching **secret key** there. Never commit the secret or put it in browser code.
+4. Deploy the site and verify a real submission. Confirm through EmailJS that requests without
+   a valid CAPTCHA token are rejected. Browser validation alone does not prevent direct API abuse.
+
+Coordinate the template setting with deployment: enabling verification makes the old form's
+requests fail, while deploying without template verification leaves direct requests unprotected.
+
+Run `node --test test/work_form_test.cjs` for the mocked form checks. These do not verify live
+Google or EmailJS configuration. For local integration testing, use a separate reCAPTCHA
+registration and EmailJS template so production settings stay isolated.
+
+Provider setup: https://www.emailjs.com/docs/user-guide/adding-captcha-verification/
+
 ## Licensing
 This marketing website is open source for viewing, however no code or assets within this
 repository may be reproduced without express consent from Declaratve, Inc.

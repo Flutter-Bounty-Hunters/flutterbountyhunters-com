@@ -7,6 +7,30 @@
   const { message, name, email } = form.elements;
   const needBoxes = Array.from(form.querySelectorAll("[name=need]"));
 
+  const captcha = document.getElementById("workCaptcha");
+  let captchaWidget;
+  let sending = false;
+
+  window.workCaptchaReady = () => {
+    captchaWidget = grecaptcha.render(captcha, {
+      sitekey: captcha.dataset.sitekey,
+      theme: "dark",
+      size: captcha.clientWidth < 304 ? "compact" : "normal",
+      callback: () => showStatus("", false),
+      "expired-callback": () => showStatus("Verification expired. Please check the CAPTCHA again.", true),
+      "error-callback": () => showStatus("Verification failed to load. Check your connection and reload the page.", true),
+    });
+  };
+
+  if (captcha.dataset.sitekey) {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?onload=workCaptchaReady&render=explicit";
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => showStatus("Verification failed to load. Please reload, or reach Matt on X at @SuprDeclarative.", true);
+    document.head.appendChild(script);
+  }
+
   const PROMPTS = {
     "Package": "We need a package that…",
     "Bug fix": "This Flutter bug is upsetting our customers…",
@@ -66,6 +90,7 @@
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (sending) return;
 
     const problem = validate();
     if (problem) {
@@ -74,20 +99,35 @@
       return;
     }
 
+    if (captchaWidget === undefined) {
+      showStatus("Verification is unavailable. Please reload, or reach Matt on X at @SuprDeclarative.", true);
+      return;
+    }
+    const captchaToken = grecaptcha.getResponse(captchaWidget);
+    if (!captchaToken) {
+      showStatus("Please complete the CAPTCHA before sending.", true);
+      return;
+    }
+
+    sending = true;
     send.disabled = true;
     showStatus("Sending…", false);
 
-    emailjs.send("service_vcpx8t4", "template_fbh", {
+    Promise.resolve().then(() => emailjs.send("service_vcpx8t4", "template_fbh", {
+      "g-recaptcha-response": captchaToken,
       "reply_to": email.value.trim(),
       "from_name": name.value.trim(),
       "message": `Needs: ${checkedNeeds().join(", ")}\n\n${message.value.trim()}`,
-    }).then(() => {
+    })).then(() => {
       form.reset();
       updatePrompt();
       showStatus("Thanks. We got your message, and we'll reply by email.", false);
     }).catch(() => {
       showStatus("Your message didn't send. Try again, or reach Matt on X at @SuprDeclarative.", true);
     }).finally(() => {
+      // Tokens are single-use, including when a send attempt fails.
+      grecaptcha.reset(captchaWidget);
+      sending = false;
       send.disabled = false;
     });
   });

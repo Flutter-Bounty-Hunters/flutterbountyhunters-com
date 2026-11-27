@@ -7,6 +7,9 @@ import 'package:jaspr/jaspr.dart';
 class WorkWithUs extends StatelessComponent {
   const WorkWithUs({super.key});
 
+  // Public reCAPTCHA v2 checkbox key; the secret belongs only in EmailJS.
+  static const recaptchaSiteKey = '6LfYZjQuAAAAAE5WdLBmNBiL5CvYSqeqm-9dp3z0';
+
   @override
   Component build(BuildContext context) {
     return div(id: 'WorkWithUs', classes: 'work', [
@@ -48,6 +51,11 @@ class WorkWithUs extends StatelessComponent {
                 'aria-label': 'What does your app need?',
                 'placeholder': 'What does your app need?',
               },
+              [],
+            ),
+            div(
+              id: 'workCaptcha',
+              attributes: {'data-sitekey': recaptchaSiteKey, 'style': 'margin-bottom: 16px'},
               [],
             ),
             div(classes: 'work-controls', [
